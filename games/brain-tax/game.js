@@ -62,6 +62,9 @@ const DAILY_PUZZLES = {
     ]
 };
 
+// Meta viewport tag should be in HTML, not JavaScript
+// Removing the incorrectly placed HTML tag and extra closing brace
+
 // Debug task loading function
 async function debugLoadTasks() {
     console.log("Debug: Testing task loading");
@@ -338,22 +341,41 @@ function toggleSound() {
 const screens = {};
 
 function showScreen(screenId) {
-    console.log(`Showing screen: ${screenId}`);
-    
     // Hide all screens first
     const screens = document.querySelectorAll('.screen');
     screens.forEach(screen => {
         screen.classList.remove('active');
     });
     
-    // Show the specified screen
-    const screenToShow = document.getElementById(screenId);
-    if (screenToShow) {
-        // Reset scroll position
+    // Show the requested screen
+    const targetScreen = document.getElementById(screenId);
+    if (targetScreen) {
+        // Reset scroll position first
         window.scrollTo(0, 0);
+        if (targetScreen.scrollTo) {
+            targetScreen.scrollTo(0, 0);
+        }
         
-        // Add specific screen transition effects
-        if (screenId === 'summary-screen') {
+        targetScreen.classList.add('active');
+        
+        // Force layout recalculation to ensure proper display
+        setTimeout(() => {
+            if (targetScreen.scrollTo) {
+                targetScreen.scrollTo(0, 0);
+            }
+            
+            // Adjust layout if needed after screen change
+            handleResponsiveLayout();
+        }, 10);
+        
+        // Handle specific screen initializations
+        if (screenId === 'character-setup') {
+            setupCharacterScreen();
+            playSound('menuSelect');
+        } else if (screenId === 'game-screen') {
+            updateTaskProgress();
+            playSound('gameStart');
+        } else if (screenId === 'summary-screen') {
             // Create a confetti burst for the summary screen
             setTimeout(() => {
                 confetti({
@@ -365,22 +387,49 @@ function showScreen(screenId) {
             
             // Play completion sound
             playSound('dayComplete');
-        } else if (screenId === 'character-setup') {
-            playSound('menuSelect');
-        } else if (screenId === 'game-screen') {
-            playSound('gameStart');
+            
+            // Make sure play again button has its event listener
+            const playAgainBtn = document.getElementById('play-again-btn');
+            if (playAgainBtn) {
+                // Remove any existing listeners to prevent duplicates
+                const newPlayAgainBtn = playAgainBtn.cloneNode(true);
+                playAgainBtn.parentNode.replaceChild(newPlayAgainBtn, playAgainBtn);
+                
+                // Add fresh event listener
+                newPlayAgainBtn.addEventListener('click', function() {
+                    console.log("Play again button clicked!");
+                    playAgain();
+                });
+            }
         }
         
-        // Show the screen with animation
-        screenToShow.classList.add('active');
+        console.log(`Showing screen: ${screenId}`);
     } else {
-        console.error(`Screen with ID ${screenId} not found`);
+        console.error(`Screen not found: ${screenId}`);
     }
 }
 
 // Event Listeners
 document.addEventListener('DOMContentLoaded', async () => {
     console.log("DOM Content Loaded - Initializing Brain Tax Game");
+    
+    // Initialize responsive layout
+    handleResponsiveLayout();
+    
+    // Failsafe: Hide loading screen after maximum 5 seconds regardless of initialization
+    setTimeout(() => {
+        const loadingScreen = document.getElementById('loading-screen');
+        if (loadingScreen && loadingScreen.style.display !== 'none') {
+            console.log("Failsafe: Hiding loading screen after timeout");
+            loadingScreen.style.display = 'none';
+            
+            // Show the character setup screen if no screen is active
+            const activeScreen = document.querySelector('.screen.active');
+            if (!activeScreen) {
+                showScreen('character-setup');
+            }
+        }
+    }, 5000);
     
     // Debug button setup
     const debugBtn = document.getElementById('debug-btn');
@@ -401,6 +450,12 @@ document.addEventListener('DOMContentLoaded', async () => {
         loadYouTubeAPI();
         
         await initGame();
+        
+        // Hide loading screen after initialization
+        const loadingScreen = document.getElementById('loading-screen');
+        if (loadingScreen) {
+            loadingScreen.style.display = 'none';
+        }
         
         // Show the home screen
         const homeScreen = document.getElementById('home-screen');
@@ -456,6 +511,19 @@ document.addEventListener('DOMContentLoaded', async () => {
             console.error("Start game button not found!");
         }
 
+        // Play again button handling
+        const playAgainBtn = document.getElementById('play-again-btn');
+        if (playAgainBtn) {
+            console.log("Play again button found, adding event handler");
+            playAgainBtn.addEventListener('click', function() {
+                console.log("Play again button clicked!");
+                resetGame();
+                showScreen('character-setup');
+            });
+        } else {
+            console.error("Play again button not found!");
+        }
+
         // Setup music toggle separately for reliability
         const musicToggle = document.getElementById('music-toggle');
         if (musicToggle) {
@@ -492,7 +560,7 @@ function updateEnergy(change) {
         console.error("Energy bar elements not found");
         return;
     }
-    
+
     // Create visual indicator for energy change
     if (change !== 0) {
         const indicator = document.createElement('div');
@@ -776,7 +844,7 @@ async function showThoughtBubble(context) {
     // Set text and show bubble
     bubble.textContent = thought;
     bubble.classList.add('visible');
-
+    
     // Hide bubble after delay
     setTimeout(() => {
         bubble.classList.remove('visible');
@@ -873,9 +941,9 @@ async function initGame() {
     showScreen('home-screen');
     
     // Hide loading indicator
-    const loadingIndicator = document.getElementById('loading-indicator');
-    if (loadingIndicator) {
-        loadingIndicator.style.display = 'none';
+    const loadingScreen = document.getElementById('loading-screen');
+    if (loadingScreen) {
+        loadingScreen.style.display = 'none';
     }
 }
 
@@ -954,7 +1022,7 @@ async function startGame() {
         await setupGame();
         
         showScreen('game-screen');
-        updateEnergyBar();
+    updateEnergyBar();
         showNextTask();
         updateAvatarDisplay();
     } catch (error) {
@@ -1548,8 +1616,103 @@ function showErrorScreen(message) {
 
 // Show loading indicator
 function showLoadingIndicator(isLoading) {
-    const loadingIndicator = document.getElementById('loading-indicator');
-    if (loadingIndicator) {
-        loadingIndicator.style.display = isLoading ? 'block' : 'none';
+    const loadingScreen = document.getElementById('loading-screen');
+    if (loadingScreen) {
+        loadingScreen.style.display = isLoading ? 'block' : 'none';
     }
 }
+
+// Reset game and play again
+function playAgain() {
+    console.log("Play again function called");
+    resetGame();
+    showScreen('character-setup');
+}
+
+// Handle responsive scaling
+function handleResponsiveLayout() {
+    const gameContainer = document.getElementById('game-container');
+    if (!gameContainer) return;
+    
+    const windowWidth = window.innerWidth;
+    const windowHeight = window.innerHeight;
+    const aspectRatio = 0.75; // 3:4 ratio (width/height)
+    
+    // Apply direct styles based on orientation
+    if (windowWidth / windowHeight > aspectRatio) {
+        // Landscape mode - constrain by height
+        const containerHeight = windowHeight;
+        const containerWidth = containerHeight * aspectRatio;
+        
+        gameContainer.style.width = `${containerWidth}px`;
+        gameContainer.style.height = `${containerHeight}px`;
+    } else {
+        // Portrait mode - constrain by width
+        const containerWidth = windowWidth;
+        const containerHeight = containerWidth / aspectRatio;
+        
+        gameContainer.style.width = `${containerWidth}px`;
+        gameContainer.style.height = `${containerHeight}px`;
+    }
+    
+    // Force redraw on Safari/iOS
+    gameContainer.style.display = 'none';
+    void gameContainer.offsetHeight; // trigger reflow
+    gameContainer.style.display = 'flex';
+    
+    console.log(`Game container size: ${gameContainer.offsetWidth}x${gameContainer.offsetHeight}`);
+    
+    // Make sure content is visible
+    const screens = document.querySelectorAll('.screen');
+    screens.forEach(screen => {
+        if (screen.classList.contains('active')) {
+            screen.scrollTop = 0;
+        }
+    });
+}
+
+// Reset scroll position for all screens
+function resetScrollPosition() {
+    const screens = document.querySelectorAll('.screen');
+    screens.forEach(screen => {
+        if (screen.scrollTo) {
+            screen.scrollTo(0, 0);
+        }
+    });
+}
+
+// Fix for iOS Safari issues with 100vh
+function fixIOSViewportHeight() {
+    // First, get the viewport height
+    let vh = window.innerHeight * 0.01;
+    // Then set the value in the --vh custom property to the root of the document
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+
+    // Use actual full height in iOS Safari
+    if (/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream) {
+        document.body.style.height = `${window.innerHeight}px`;
+        document.getElementById('game-container').style.height = `${window.innerHeight}px`;
+    }
+}
+
+// Add event listeners for viewport changes
+window.addEventListener('resize', function() {
+    fixIOSViewportHeight();
+    handleResponsiveLayout();
+    resetScrollPosition();
+});
+
+window.addEventListener('orientationchange', function() {
+    // Short timeout to allow orientation to complete
+    setTimeout(function() {
+        fixIOSViewportHeight();
+        handleResponsiveLayout();
+        resetScrollPosition();
+    }, 200);
+});
+
+// Call these functions on load
+document.addEventListener('DOMContentLoaded', function() {
+    fixIOSViewportHeight();
+    handleResponsiveLayout();
+});

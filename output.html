@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brain Tax - A Mental Energy Management Game</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+  <div id="game-container">
+    <!-- Music Toggle -->
+    <div class="music-toggle" id="music-toggle" title="Toggle music">
+      <span class="music-icon">🎵</span>
+      <span>Calm Your Brain</span>
+    </div>
+
+    <div id="youtube-player" style="display: none;"></div>
+
+    <!-- Home Screen -->
+    <div id="home-screen" class="screen active">
+        <div class="brain-animation">
+            <div class="brain-icon">🧠</div>
+            <div class="brain-sparks">
+                <span>⚡</span>
+                <span>💡</span>
+                <span>✨</span>
+                <span>⭐</span>
+            </div>
+        </div>
+        
+        <div class="title-container">
+            <h1 class="title">Brain Tax</h1>
+        </div>
+        <p class="subtitle">Every decision costs a bit of brain power. How will you spend yours?</p>
+        
+        <div class="menu-buttons">
+            <button class="btn primary glow-effect" id="play-btn">
+                <span class="btn-content">
+                    <span class="btn-icon">🎮</span>
+                    Start Your Journey
+                </span>
+            </button>
+        </div>
+
+        <div class="home-content">
+            <div class="main-section">
+                <div class="game-rules card">
+                    <h3>How to Play</h3>
+                    <ul>
+                        <li>Start with 100 Mental Energy (ME)</li>
+                        <li>Each decision costs different ME</li>
+                        <li>Balance your choices wisely</li>
+                        <li>Complete tasks to finish your day</li>
+                    </ul>
+                </div>
+
+                <div class="game-tips card">
+                    <h3>Pro Tips</h3>
+                    <ul>
+                        <li>Take breaks between decisions</li>
+                        <li>Some choices restore energy</li>
+                        <li>Watch for draining tasks</li>
+                        <li>Plan your energy usage</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="scoring-system card">
+                <h3>Scoring System</h3>
+                <div class="score-components">
+                    <div class="score-component">
+                        <div class="score-icon">⚡</div>
+                        <h4>Energy Score (50%)</h4>
+                        <p>Remaining Mental Energy = Points</p>
+                    </div>
+                    <div class="score-component">
+                        <div class="score-icon">🎯</div>
+                        <h4>Decision Score (50%)</h4>
+                        <p>Each Task = 10 Points</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Character Setup -->
+    <div id="character-setup" class="screen">
+        <div class="character-setup-content">
+            <h2 class="title">Choose Your Brain Avatar</h2>
+            <p class="subtitle">Each avatar has unique strengths in decision making</p>
+            <div id="avatar-options">
+                <div class="avatar-option" data-avatar="logical">
+                    <div class="avatar-icon">
+                        <img src="assets/images/brain-logical.png" alt="Logical Brain" class="avatar-img">
+                    </div>
+                    <div class="avatar-name">The Logical Brain</div>
+                    <div class="avatar-bonus">Better at planning decisions</div>
+                </div>
+                <div class="avatar-option" data-avatar="creative">
+                    <div class="avatar-icon">
+                        <img src="assets/images/brain-creative.png" alt="Creative Brain" class="avatar-img">
+                    </div>
+                    <div class="avatar-name">The Creative Brain</div>
+                    <div class="avatar-bonus">Better at intuitive decisions</div>
+                </div>
+                <div class="avatar-option" data-avatar="balanced">
+                    <div class="avatar-icon">
+                        <img src="assets/images/brain-balanced.png" alt="Balanced Brain" class="avatar-img">
+                    </div>
+                    <div class="avatar-name">The Balanced Brain</div>
+                    <div class="avatar-bonus">No specific bonus, but more consistent</div>
+                </div>
+            </div>
+            <button id="start-game-btn" class="btn primary">Start Your Day</button>
+        </div>
+    </div>
+
+    <!-- Game Screen -->
+    <div id="game-screen" class="screen">
+      <div id="top-bar">
+        <div class="avatar-display">
+          <span id="current-avatar"></span>
+          <span id="current-mood"></span>
+        </div>
+        <div class="energy-bar-container">
+          <div id="energy-fill" class="energy-fill energy-high"></div>
+          <div id="energy-text">100%</div>
+        </div>
+        <div id="day-indicator">Task Progress</div>
+      </div>
+      <div id="task-progress">Task 1 of 10</div>
+      <div id="task-container">
+        <div id="task-card" class="task-card">
+          <div class="task-header">
+            <h2 id="task-title" class="task-title">Task Title</h2>
+            <p id="task-description" class="task-description">Task description will appear here.</p>
+          </div>
+          <div id="task-options" class="options-container">
+            <!-- Options will be added dynamically -->
+          </div>
+        </div>
+      </div>
+      <div id="thoughts-container">
+        <div id="thought-bubble" class="thought-bubble">
+          <p id="thought-text"></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Summary Screen -->
+    <div id="summary-screen" class="screen">
+      <h2>📊 Day Complete!</h2>
+      <div class="summary-item" id="final-score"></div>
+      <div class="summary-item" id="taxing-choice"></div>
+      <div class="summary-item" id="self-care-tip"></div>
+      <button class="btn primary" id="play-again-btn">Play Again</button>
+    </div>
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>

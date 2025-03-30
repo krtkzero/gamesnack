@@ -2,7 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover, minimal-ui">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="description" content="Brain Tax - A game about mental energy management and decision making">
   <meta name="author" content="GameSnack">
   <title>Brain Tax - Mental Energy Management Game</title>
@@ -14,8 +16,8 @@
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
 </head>
 <body>
-  <!-- Loading indicator -->
-  <div id="loading-indicator" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--background-color); display: flex; justify-content: center; align-items: center; z-index: 9999;">
+  <!-- Loading Screen -->
+  <div id="loading-screen" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--background-color); display: flex; justify-content: center; align-items: center; z-index: 9999;">
     <div style="text-align: center;">
       <div class="brain-animation" style="margin: 0 auto 20px; width: 100px; height: 100px;">
         <div class="brain-icon" style="font-size: 60px;">🧠</div>
@@ -35,9 +37,6 @@
     </div>
 
     <div id="youtube-player" style="display: none;"></div>
-
-    <!-- Debug button -->
-    <button id="debug-btn">Debug</button>
     
     <!-- Debug panel -->
     <div id="debug-panel" class="debug-panel">
@@ -240,7 +239,7 @@
         <p>Your mental energy could use a boost! Remember to take quick walks between tough decisions.</p>
       </div>
       
-      <button class="btn primary" id="play-again-btn">Play Again</button>
+      <button class="btn primary" id="play-again-btn" onclick="playAgain()">Play Again</button>
       
       <!-- Confetti Elements -->
       <div class="brain-confetti" style="left:10%; animation-delay:0.2s;"></div>
