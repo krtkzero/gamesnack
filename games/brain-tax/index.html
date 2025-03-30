@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brain Tax - A Mental Energy Management Game</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atma:wght@400;500;600;700&family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;500;600;700&family=Sen:wght@400;700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+  <div id="game-container">
+    <!-- Music Toggle -->
+    <div class="music-toggle" id="music-toggle" title="Toggle music">
+      <span class="music-icon">🎵</span>
+      <span>Calm Your Brain</span>
+    </div>
+
+    <div id="youtube-player" style="display: none;"></div>
+
+    <!-- Debug button -->
+    <button id="debug-btn">Debug</button>
+    
+    <!-- Debug panel -->
+    <div id="debug-panel" class="debug-panel">
+      <h3>Debug Panel</h3>
+      <button id="reload-tasks-btn" class="debug-btn">Reload Tasks</button>
+      <div class="debug-info">
+        <p id="loaded-tasks-count">Tasks: 0</p>
+        <p id="current-task-index">Current task: 0</p>
+        <p id="mental-energy-debug">Energy: 100</p>
+      </div>
+    </div>
+
+    <!-- Home Screen -->
+    <div id="home-screen" class="screen active">
+        <div class="brain-animation">
+            <div class="brain-icon">🧠</div>
+            <div class="brain-sparks">
+                <span>⚡</span>
+                <span>💡</span>
+                <span>✨</span>
+                <span>⭐</span>
+            </div>
+        </div>
+        
+        <div class="title-container">
+            <h1 class="title">Brain Tax</h1>
+        </div>
+        <p class="subtitle">Every decision costs a bit of brain power. How will you spend yours?</p>
+        
+        <div class="menu-buttons">
+            <button class="btn primary glow-effect" id="play-btn">
+                <span class="btn-content">
+                    <span class="btn-icon">🎮</span>
+                    Start Your Journey
+                </span>
+            </button>
+        </div>
+
+        <div class="home-content">
+            <div class="main-section">
+                <div class="game-rules card">
+                    <h3>How to Play</h3>
+                    <ul>
+                        <li>Start with 100 Mental Energy (ME)</li>
+                        <li>Each decision costs different ME</li>
+                        <li>Balance your choices wisely</li>
+                        <li>Complete tasks to finish your day</li>
+                    </ul>
+                </div>
+
+                <div class="game-tips card">
+                    <h3>Pro Tips</h3>
+                    <ul>
+                        <li>Take breaks between decisions</li>
+                        <li>Some choices restore energy</li>
+                        <li>Watch for draining tasks</li>
+                        <li>Plan your energy usage</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="scoring-system card">
+                <h3>Scoring System</h3>
+                <div class="score-components">
+                    <div class="score-component">
+                        <div class="score-icon">⚡</div>
+                        <h4>Energy Score (50%)</h4>
+                        <p>Remaining Mental Energy = Points</p>
+                    </div>
+                    <div class="score-component">
+                        <div class="score-icon">🎯</div>
+                        <h4>Decision Score (50%)</h4>
+                        <p>Each Task = 10 Points</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Character Setup -->
+    <div id="character-setup" class="screen">
+        <div class="character-setup-content">
+            <h2 class="title">Choose Your Brain Avatar</h2>
+            <p class="subtitle">Each avatar has unique strengths in decision making</p>
+            
+            <!-- Decorative brains -->
+            <div class="decorative-brain" style="position:absolute; top:10px; left:10px; font-size:20px; transform: rotate(-15deg);">🧠</div>
+            <div class="decorative-brain" style="position:absolute; top:10px; right:10px; font-size:20px; transform: rotate(15deg);">🧠</div>
+            <div class="decorative-brain" style="position:absolute; bottom:10px; left:10px; font-size:20px; transform: rotate(15deg);">🧠</div>
+            <div class="decorative-brain" style="position:absolute; bottom:10px; right:10px; font-size:20px; transform: rotate(-15deg);">🧠</div>
+            
+            <div id="avatar-options">
+                <div class="avatar-option" data-avatar="logical">
+                    <div class="avatar-icon">
+                        <img src="assets/images/brain-logical.png" alt="Logical Brain" class="avatar-img">
+                    </div>
+                    <div class="avatar-name">The Logical Brain</div>
+                    <div class="avatar-bonus">Better at planning decisions</div>
+                </div>
+                <div class="avatar-option" data-avatar="creative">
+                    <div class="avatar-icon">
+                        <img src="assets/images/brain-creative.png" alt="Creative Brain" class="avatar-img">
+                    </div>
+                    <div class="avatar-name">The Creative Brain</div>
+                    <div class="avatar-bonus">Better at intuitive decisions</div>
+                </div>
+                <div class="avatar-option" data-avatar="balanced">
+                    <div class="avatar-icon">
+                        <img src="assets/images/brain-balanced.png" alt="Balanced Brain" class="avatar-img">
+                    </div>
+                    <div class="avatar-name">The Balanced Brain</div>
+                    <div class="avatar-bonus">No specific bonus, but more consistent</div>
+                </div>
+            </div>
+            <button id="start-game-btn" class="btn primary">Start Your Day</button>
+        </div>
+    </div>
+
+    <!-- Game Screen -->
+    <div id="game-screen" class="screen">
+      <div id="top-bar">
+        <div id="day-indicator">Task Progress</div>
+        <div class="energy-bar-container">
+          <div id="energy-fill" class="energy-fill energy-high"></div>
+          <div id="energy-text">100%</div>
+        </div>
+        <div class="avatar-display">
+          <span id="current-avatar">🧠</span>
+          <span id="current-mood">😊</span>
+        </div>
+      </div>
+      <div id="task-progress">Task 1 of 10</div>
+      <div id="task-container">
+        <div class="task-card">
+          <div class="task-header">
+            <h2 class="task-title">Morning Email Dilemma</h2>
+            <p class="task-description">How do you handle this administrative task?</p>
+          </div>
+          <div class="options-container">
+            <!-- Sample options with proper text labels instead of "Option" -->
+            <div class="option-btn">
+              <div class="option-img">
+                <img src="assets/images/quickyes-morningemail.png" alt="Quick yes">
+              </div>
+              <div class="option-content">
+                <div class="option-label">Quick yes</div>
+              </div>
+            </div>
+            <div class="option-btn">
+              <div class="option-img">
+                <img src="assets/images/detailedresponse-morningemail.png" alt="Detailed response">
+              </div>
+              <div class="option-content">
+                <div class="option-label">Detailed response</div>
+              </div>
+            </div>
+            <div class="option-btn">
+              <div class="option-img">
+                <img src="assets/images/markforlater-morningemail.png" alt="Mark for later">
+              </div>
+              <div class="option-content">
+                <div class="option-label">Mark for later</div>
+              </div>
+            </div>
+            <div class="option-btn">
+              <div class="option-img">
+                <img src="assets/images/delegatetoteam-morningemail.png" alt="Delegate to team">
+              </div>
+              <div class="option-content">
+                <div class="option-label">Delegate to team</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Summary Screen -->
+    <div id="summary-screen" class="screen">
+      <h2>Day Complete!</h2>
+      
+      <div class="summary-item" id="final-score">
+        <div class="summary-badge">🏅</div>
+        <h3><span class="score-icon">⭐</span>Final Score</h3>
+        <p>Energy Remaining: <strong>55%</strong></p>
+        <p>Decisions Made: <strong>7/10</strong></p>
+        <p>Total Points: <strong>85</strong></p>
+      </div>
+      
+      <div class="summary-item" id="taxing-choice">
+        <div class="summary-badge">💭</div>
+        <h3><span class="score-icon">🧩</span>Most Taxing Decision</h3>
+        <p>Working through lunch cost you 25 Mental Energy</p>
+        <p>Try to take breaks when possible!</p>
+      </div>
+      
+      <div class="summary-item" id="self-care-tip">
+        <div class="summary-badge">💡</div>
+        <h3><span class="score-icon">🧘</span>Self Care Tip</h3>
+        <p>Your mental energy could use a boost! Remember to take quick walks between tough decisions.</p>
+      </div>
+      
+      <button class="btn primary" id="play-again-btn">Play Again</button>
+      
+      <!-- Confetti Elements -->
+      <div class="brain-confetti" style="left:10%; animation-delay:0.2s;"></div>
+      <div class="brain-confetti" style="left:25%; animation-delay:0.5s; background-color:var(--primary-color); width:15px; height:15px;"></div>
+      <div class="brain-confetti" style="left:40%; animation-delay:1.1s;"></div>
+      <div class="brain-confetti" style="left:60%; animation-delay:0.7s; background-color:var(--energy-full); width:12px; height:12px;"></div>
+      <div class="brain-confetti" style="left:75%; animation-delay:0.3s;"></div>
+      <div class="brain-confetti" style="left:90%; animation-delay:0.9s; background-color:var(--primary-color); width:18px; height:18px;"></div>
+      
+      <!-- Animated brain icons -->
+      <div class="floating-brain" style="top:10%; left:5%; animation-delay:0.3s;">🧠</div>
+      <div class="floating-brain" style="top:15%; right:5%; animation-delay:0.7s;">🧠</div>
+      <div class="floating-brain" style="bottom:10%; left:8%; animation-delay:1.1s;">🧠</div>
+      <div class="floating-brain" style="bottom:15%; right:8%; animation-delay:0.5s;">🧠</div>
+    </div>
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>

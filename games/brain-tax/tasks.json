@@ -1,0 +1,94 @@
+{
+  "tasks": [
+    {
+      "title": "Wake Up Routine",
+      "type": "micro",
+      "options": [
+        { "label": "Snooze alarm", "baseCost": 5, "sideEffect": "rush_later", "image": "assets/images/snoozealarm-wakeuproutine.png" },
+        { "label": "Get up immediately", "baseCost": 12, "modifierTag": "morning_boost", "image": "assets/images/getupimmediately-wakeuproutine.png" },
+        { "label": "Check phone in bed", "baseCost": 8, "sideEffect": "time_waste", "image": "assets/images/checkphoneinbed-wakeuproutine.png" },
+        { "label": "Morning stretch", "baseCost": 10, "modifierTag": "energy_boost", "image": "assets/images/morningstretch-wakeuproutine.png" }
+      ]
+    },
+    {
+      "title": "Breakfast Decision",
+      "type": "micro",
+      "options": [
+        { "label": "Quick cereal", "baseCost": 5, "image": "assets/images/quickcereal-breakfast.png" },
+        { "label": "Cook healthy meal", "baseCost": 12, "modifierTag": "energy_boost", "image": "assets/images/healthymeal-breakfast.png" },
+        { "label": "Browse food apps", "baseCost": 20, "sideEffect": "time_waste", "image": "assets/images/foodapps-breakfast.png" },
+        { "label": "Skip breakfast", "baseCost": 15, "sideEffect": "hunger", "image": "assets/images/skipbreakfast-breakfast.png" }
+      ]
+    },
+    {
+      "title": "Morning Email Dilemma",
+      "type": "admin",
+      "options": [
+        { "label": "Quick yes", "baseCost": 8, "sideEffect": "guilt", "image": "assets/images/quickyes-email.png" },
+        { "label": "Detailed response", "baseCost": 15, "modifierTag": "productivity_boost", "image": "assets/images/detailedresponse-email.png" },
+        { "label": "Mark for later", "baseCost": 5, "sideEffect": "procrastination", "image": "assets/images/markforlater-email.png" },
+        { "label": "Delegate to team", "baseCost": 12, "modifierTag": "leadership", "image": "assets/images/delegatetoteam-email.png" }
+      ]
+    },
+    {
+      "title": "Team Meeting Participation",
+      "type": "social",
+      "options": [
+        { "label": "Active participation", "baseCost": 25, "modifierTag": "team_player", "image": "assets/images/activeparticipation-teammeetingparticipation.png" },
+        { "label": "Listen passively", "baseCost": 10, "sideEffect": "missed_opportunity", "image": "assets/images/listenpassively-teammeetingparticipation.png" },
+        { "label": "Camera off mode", "baseCost": 8, "sideEffect": "disconnected", "image": "assets/images/cameramodeoff-teammeetingparticipation.png" },
+        { "label": "Multitask secretly", "baseCost": 15, "sideEffect": "stress", "image": "assets/images/multitasksecretly-teammeetingparticipation.png" }
+      ]
+    },
+    {
+      "title": "Lunch Break Planning",
+      "type": "planning",
+      "options": [
+        { "label": "Quick sandwich", "baseCost": 5, "image": "assets/images/quicksandwich-lunch.png" },
+        { "label": "Team lunch", "baseCost": 20, "modifierTag": "social_boost", "image": "assets/images/teamlunch-lunch.png" },
+        { "label": "Work through lunch", "baseCost": 25, "sideEffect": "burnout", "image": "assets/images/workthroughlunch-lunch.png" },
+        { "label": "Long peaceful break", "baseCost": 15, "modifierTag": "refreshed", "image": "assets/images/longpeacefulbreak-lunch.png" }
+      ]
+    },
+    {
+      "title": "Afternoon Slump",
+      "type": "meta",
+      "options": [
+        { "label": "Coffee break", "baseCost": 10, "modifierTag": "temporary_boost", "image": "assets/images/coffeebreak-afternoonslump.png" },
+        { "label": "Power through", "baseCost": 20, "sideEffect": "exhaustion", "image": "assets/images/powerthrough-afternoonslump.png" },
+        { "label": "Quick walk", "baseCost": 15, "modifierTag": "refreshed", "image": "assets/images/quickwalk-afternoonslump.png" },
+        { "label": "Social media scroll", "baseCost": 8, "sideEffect": "distraction", "image": "assets/images/socialmediascroll-afternoonslump.png" }
+      ]
+    },
+    {
+      "title": "Project Deadline Pressure",
+      "type": "admin",
+      "options": [
+        { "label": "Request extension", "baseCost": 18, "sideEffect": "anxiety", "image": "assets/images/requestextension-projectdeadlinepressure.png" },
+        { "label": "Overtime work", "baseCost": 30, "sideEffect": "exhaustion", "image": "assets/images/overtimework-projectdeadlinepressure.png" },
+        { "label": "Prioritize tasks", "baseCost": 15, "modifierTag": "organized", "image": "assets/images/prioritizetasks-projectdeadlinepressure.png" },
+        { "label": "Seek help", "baseCost": 12, "modifierTag": "team_support", "image": "assets/images/seekhelp-projectdeadlinepressure.png" }
+      ]
+    },
+    {
+      "title": "Evening Plans",
+      "type": "social",
+      "options": [
+        { "label": "Accept dinner invite", "baseCost": 25, "modifierTag": "social_energy", "image": "assets/images/acceptdinnerinvite-dinnerplans.png" },
+        { "label": "Quiet night in", "baseCost": 5, "modifierTag": "recharge", "image": "assets/images/quietnightin-eveningplans.png" },
+        { "label": "Quick gym session", "baseCost": 20, "modifierTag": "health_boost", "image": "assets/images/quickgymsession-eveningplans.png" },
+        { "label": "Catch up on work", "baseCost": 15, "sideEffect": "work_life_imbalance", "image": "assets/images/catchuponwork-eveningplans.png" }
+      ]
+    },
+    {
+      "title": "Unexpected Call",
+      "type": "crisis",
+      "options": [
+        { "label": "Answer immediately", "baseCost": 15, "sideEffect": "interruption", "image": "assets/images/answerimmediately-unexpectedcall.png" },
+        { "label": "Let it go to voicemail", "baseCost": 8, "sideEffect": "missed_call_anxiety", "image": "assets/images/letitgotovoicemail-unexpectedcall.png" },
+        { "label": "Text 'call later'", "baseCost": 10, "modifierTag": "boundary_setting", "image": "assets/images/textcalllater-unexpectedcall.png" },
+        { "label": "Ignore completely", "baseCost": 5, "sideEffect": "guilt", "image": "assets/images/ignorecompletely-unexpectedcall.png" }
+      ]
+    }
+  ]
+}

@@ -16,22 +16,33 @@
 
     <main>
         <section class="featured-game">
-            <h2>🔥 Featured Game</h2>
+            <h2>🔥 Featured Game of the Week</h2>
             <div class="game-container">
-                <!-- Featured game iframe -->
-                <iframe src="/games/slice-it-clean/index.html" frameborder="0" width="100%" height="400"></iframe>
+                <div class="game-preview">
+                    <div class="game-preview-content">
+                        <h3 class="featured-title">Brain Tax</h3>
+                        <p class="featured-description">Every decision costs a bit of brain power. How will you spend yours?</p>
+                        <div class="featured-animation">
+                            <div class="animation-object brain">🧠</div>
+                            <div class="animation-object spark">⚡</div>
+                            <div class="animation-object idea">💡</div>
+                            <div class="animation-object star">✨</div>
+                        </div>
+                        <button id="playFeaturedGame" class="play-button">Play Now</button>
+                    </div>
+                </div>
             </div>
         </section>
 
         <section class="games-grid">
             <h2>All Games</h2>
             <div class="grid">
-                <!-- Game Card 1 -->
+                <!-- Game Card 1 - Brain Tax (now first) -->
                 <div class="game-card">
                     <div class="thumbnail">
-                        <div class="placeholder-img">🎮</div>
+                        <div class="placeholder-img">🧠</div>
                     </div>
-                    <h3>Slice It Clean</h3>
+                    <h3>Brain Tax</h3>
                 </div>
 
                 <!-- Game Card 2 -->
@@ -73,12 +84,21 @@
                     </div>
                     <h3>Target Practice</h3>
                 </div>
+
+                <!-- Game Card 7 - Slice It Clean (moved to last) -->
+                <div class="game-card">
+                    <div class="thumbnail">
+                        <div class="placeholder-img">🎮</div>
+                    </div>
+                    <h3>Slice It Clean</h3>
+                </div>
             </div>
         </section>
     </main>
 
     <footer>
-        <p>© 2023 gamesnack.fun | New games added weekly!</p>
+        <p>&copy; 2025 gamesnack.fun | New games added weekly!</p>
+        <a href="https://kartik-verse-portfolio.lovable.app/" class="creator-button" target="_blank">About the Creator</a>
     </footer>
 
     <script src="script.js"></script>

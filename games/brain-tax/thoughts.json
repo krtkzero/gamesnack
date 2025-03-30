@@ -1,0 +1,142 @@
+{
+  "energy_levels": {
+    "high": [
+      "Brain's so charged, it's practically glowing! ✨",
+      "Watch out world, this brain's on fire! 🔥",
+      "I could solve quantum physics right now! (Probably not)",
+      "Is this what coffee feels like? But better!",
+      "My neurons are doing the cha-cha! 💃"
+    ],
+    "medium": [
+      "Still functioning... mostly! 🤔",
+      "Brain.exe is running at acceptable levels",
+      "Not dead yet, just slightly zombified",
+      "50% brain power - perfectly mediocre!",
+      "Running on pure spite and determination"
+    ],
+    "low": [
+      "Brain.exe has stopped working... 🤖",
+      "Error 404: Energy Not Found",
+      "Is this what plants feel like?",
+      "My last brain cell is on vacation",
+      "Someone hit the reset button, please!"
+    ]
+  },
+  "task_types": {
+    "micro": [
+      "Oh look, a task even I can't mess up! ...right?",
+      "Finally, something my last brain cell can handle!",
+      "This is like a mental push-up. A tiny one.",
+      "Quick decision? More like quick confusion!",
+      "At least it's not rocket science... yet"
+    ],
+    "admin": [
+      "Paperwork: where dreams go to die... dramatically",
+      "Time to pretend I'm a responsible adult!",
+      "Filing things: the adult version of hide and seek",
+      "Who needs fun when you have forms?",
+      "Administrative tasks: fancy words for boring stuff"
+    ],
+    "planning": [
+      "Planning ahead? What am I, a fortune teller?",
+      "Future me is going to be so impressed! (Or annoyed)",
+      "Time to pretend I know what I'm doing",
+      "Planning: when wishful thinking meets reality",
+      "Drawing a roadmap to confusion!"
+    ],
+    "social": [
+      "Time to activate my 'people person' persona!",
+      "Social butterfly mode... more like social caterpillar",
+      "Who needs small talk when you can awkward talk?",
+      "Time to remember how to human!",
+      "Social skills loading... please wait..."
+    ],
+    "meta": [
+      "Thinking about thinking? That's meta, dude!",
+      "My brain is having an existential crisis",
+      "Help, I'm stuck in a recursive thought loop!",
+      "Brain inception: We need to go deeper!",
+      "Warning: Philosophy overload imminent"
+    ]
+  },
+  "decision_reactions": {
+    "positive": [
+      "That felt right!",
+      "Good call on that one.",
+      "Handled that pretty well.",
+      "Smart choice!",
+      "That should work out nicely."
+    ],
+    "neutral": [
+      "Well, that's done.",
+      "Moving on...",
+      "Could've gone either way.",
+      "We'll see how that plays out.",
+      "At least it's decided."
+    ],
+    "negative": [
+      "Should I have done that differently?",
+      "That's going to bug me all day.",
+      "Maybe I should've thought longer.",
+      "Hope that doesn't come back to haunt me.",
+      "Not sure about that one..."
+    ]
+  },
+  "crisis_thoughts": [
+    "Emergency situation detected!",
+    "Crisis mode activated!",
+    "Quick thinking required!",
+    "High-pressure decision time!",
+    "Critical situation!"
+  ],
+  "side_effects": {
+    "stress": [
+      "Feeling the pressure...",
+      "Stress levels rising!",
+      "Tension building...",
+      "Anxiety creeping in...",
+      "Pressure mounting..."
+    ],
+    "exhaustion": [
+      "Running out of steam...",
+      "Energy depleted...",
+      "Need a break...",
+      "Feeling drained...",
+      "Tired out..."
+    ],
+    "guilt": [
+      "Should I have done that differently?",
+      "Regret creeping in...",
+      "Feeling guilty...",
+      "Second thoughts...",
+      "Wish I could take that back..."
+    ],
+    "procrastination": [
+      "Putting things off...",
+      "Time slipping away...",
+      "Should have done this earlier...",
+      "Delaying the inevitable...",
+      "Running out of time..."
+    ]
+  },
+  "mental_state_changes": {
+    "Tired": "Surprise! You're tired now. Because why not?",
+    "Overwhelmed": "Plot twist: Everything is too much now!",
+    "Motivated": "Suddenly feeling like I could conquer the world! (Results may vary)",
+    "Focused": "Laser focus activated! Watch out for accidental death rays!"
+  },
+  "puzzle_success": [
+    "Look who's secretly a genius! (Don't let it go to your head)",
+    "Einstein would be... mildly impressed",
+    "Achievement unlocked: Basic Problem Solving!",
+    "Your brain cells are high-fiving right now",
+    "Who needs Google when you've got these mad skills?"
+  ],
+  "puzzle_failure": [
+    "Well, that was... an attempt",
+    "The answer was so obvious, you decided to avoid it",
+    "Your brain is currently on airplane mode",
+    "Task failed successfully!",
+    "At least you tried... sort of"
+  ]
+}
