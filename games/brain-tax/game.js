@@ -840,6 +840,8 @@ function updateTaskProgress() {
 
 // Initialize the game
 async function initGame() {
+    console.log("Initializing game...");
+
     // Reset game state
     gameState = {
         mentalEnergy: 100,
@@ -861,8 +863,20 @@ async function initGame() {
     setupGameButtons();
     setupAvatarSelection();
     
+    // Initialize music and sounds (muted by default)
+    setupAudio();
+    
+    // Setup animation
+    setupBrainAnimation();
+    
     // Show home screen
     showScreen('home-screen');
+    
+    // Hide loading indicator
+    const loadingIndicator = document.getElementById('loading-indicator');
+    if (loadingIndicator) {
+        loadingIndicator.style.display = 'none';
+    }
 }
 
 // Set up game buttons
