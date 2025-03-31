@@ -1704,3 +1704,28 @@ document.addEventListener('DOMContentLoaded', function() {
     fixIOSViewportHeight();
     handleResponsiveLayout();
 });
+
+function showGameOver() {
+    // Update summary stats
+    document.getElementById('completed-tasks').textContent = completedTasks;
+    document.getElementById('final-energy').textContent = currentEnergy;
+    document.getElementById('total-money').textContent = `$${totalMoney}`;
+    
+    // Show the summary screen
+    showScreen('summary-screen');
+}
+
+function restartGame() {
+    // Reset game state
+    currentEnergy = 100;
+    completedTasks = 0;
+    totalMoney = 0;
+    currentTaskIndex = 0;
+    
+    // Update UI
+    updateEnergyBar();
+    updateTaskProgress();
+    
+    // Show the character setup screen
+    showScreen('character-setup');
+}

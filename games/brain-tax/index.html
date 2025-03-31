@@ -216,44 +216,17 @@
 
     <!-- Summary Screen -->
     <div id="summary-screen" class="screen">
-      <h2>Day Complete!</h2>
-      
-      <div class="summary-item" id="final-score">
-        <div class="summary-badge">🏅</div>
-        <h3><span class="score-icon">⭐</span>Final Score</h3>
-        <p>Energy Remaining: <strong>55%</strong></p>
-        <p>Decisions Made: <strong>7/10</strong></p>
-        <p>Total Points: <strong>85</strong></p>
-      </div>
-      
-      <div class="summary-item" id="taxing-choice">
-        <div class="summary-badge">💭</div>
-        <h3><span class="score-icon">🧩</span>Most Taxing Decision</h3>
-        <p>Working through lunch cost you 25 Mental Energy</p>
-        <p>Try to take breaks when possible!</p>
-      </div>
-      
-      <div class="summary-item" id="self-care-tip">
-        <div class="summary-badge">💡</div>
-        <h3><span class="score-icon">🧘</span>Self Care Tip</h3>
-        <p>Your mental energy could use a boost! Remember to take quick walks between tough decisions.</p>
-      </div>
-      
-      <button class="btn primary" id="play-again-btn" onclick="playAgain()">Play Again</button>
-      
-      <!-- Confetti Elements -->
-      <div class="brain-confetti" style="left:10%; animation-delay:0.2s;"></div>
-      <div class="brain-confetti" style="left:25%; animation-delay:0.5s; background-color:var(--primary-color); width:15px; height:15px;"></div>
-      <div class="brain-confetti" style="left:40%; animation-delay:1.1s;"></div>
-      <div class="brain-confetti" style="left:60%; animation-delay:0.7s; background-color:var(--energy-full); width:12px; height:12px;"></div>
-      <div class="brain-confetti" style="left:75%; animation-delay:0.3s;"></div>
-      <div class="brain-confetti" style="left:90%; animation-delay:0.9s; background-color:var(--primary-color); width:18px; height:18px;"></div>
-      
-      <!-- Animated brain icons -->
-      <div class="floating-brain" style="top:10%; left:5%; animation-delay:0.3s;">🧠</div>
-      <div class="floating-brain" style="top:15%; right:5%; animation-delay:0.7s;">🧠</div>
-      <div class="floating-brain" style="bottom:10%; left:8%; animation-delay:1.1s;">🧠</div>
-      <div class="floating-brain" style="bottom:15%; right:8%; animation-delay:0.5s;">🧠</div>
+        <div class="summary-content">
+            <div class="summary-header">
+                <h2>Game Over!</h2>
+            </div>
+            <div class="summary-stats">
+                <p>You completed <span id="completed-tasks">0</span> tasks</p>
+                <p>Your brain energy is at <span id="final-energy">100</span>%</p>
+                <p>You earned <span id="total-money">$0</span></p>
+            </div>
+            <button class="play-again-btn" onclick="restartGame()">Play Again</button>
+        </div>
     </div>
   </div>
 
