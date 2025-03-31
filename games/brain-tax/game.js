@@ -136,7 +136,11 @@ let gameState = {
     tasks: [],
     settings: {
         sound: false // Start with sound off
-    }
+    },
+    decisions: [],
+    totalScore: 0,
+    tasksPoints: 0,
+    energyPoints: 0
 };
 
 // Sound Effects
@@ -681,17 +685,18 @@ function selectOption(optionIndex) {
     const selectedOption = currentTask.options[optionIndex];
     console.log("Selected option:", selectedOption);
     
+    // Track the decision
+    gameState.decisions.push({
+        taskTitle: currentTask.title,
+        decision: selectedOption.label,
+        energyImpact: calculateEnergyCost(selectedOption.energyCost, currentTask.type),
+        moneyImpact: selectedOption.money || 0,
+        type: currentTask.type
+    });
+    
     // Calculate and apply energy cost
     const baseCost = selectedOption.baseCost || 0;
     const energyCost = calculateEnergyCost(baseCost, currentTask.type);
-    
-    // Add selection to history
-    gameState.decisionHistory.push({
-        taskTitle: currentTask.title,
-        optionText: selectedOption.text || selectedOption.label || `Option ${optionIndex+1}`,
-        energyCost: energyCost,
-        taskType: currentTask.type
-    });
     
     // Update energy
     updateEnergy(-energyCost);
@@ -916,7 +921,11 @@ async function initGame() {
         selectedAvatar: null,
         currentTaskIndex: 0,
         tasks: [],
-        decisionHistory: []
+        decisionHistory: [],
+        decisions: [],
+        totalScore: 0,
+        tasksPoints: 0,
+        energyPoints: 0
     };
     
     // Load tasks
@@ -1395,7 +1404,11 @@ function resetGame() {
         tasks: [],
         settings: {
             sound: false // Start with sound off
-        }
+        },
+        decisions: [],
+        totalScore: 0,
+        tasksPoints: 0,
+        energyPoints: 0
     };
 }
 
@@ -1577,7 +1590,11 @@ async function setupGame() {
         selectedAvatar: gameState.selectedAvatar || avatarOptions[0].id,
         currentTaskIndex: 0,
         tasks: [],
-        settings: gameState.settings || { sound: false }
+        settings: gameState.settings || { sound: false },
+        decisions: [],
+        totalScore: 0,
+        tasksPoints: 0,
+        energyPoints: 0
     };
     
     try {
@@ -1706,11 +1723,56 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function showGameOver() {
+    // Calculate final scores
+    gameState.tasksPoints = completedTasks * 10; // 10 points per task
+    gameState.energyPoints = Math.floor(currentEnergy); // 1 point per energy point
+    gameState.totalScore = gameState.tasksPoints + gameState.energyPoints;
+
     // Update summary stats
     document.getElementById('completed-tasks').textContent = completedTasks;
     document.getElementById('final-energy').textContent = currentEnergy;
     document.getElementById('total-money').textContent = `$${totalMoney}`;
-    
+    document.getElementById('tasks-points').textContent = gameState.tasksPoints;
+    document.getElementById('energy-points').textContent = gameState.energyPoints;
+    document.getElementById('final-score').textContent = gameState.totalScore;
+
+    // Generate decision timeline
+    const decisionsList = document.getElementById('decisions-list');
+    decisionsList.innerHTML = ''; // Clear existing items
+
+    gameState.decisions.forEach((decision, index) => {
+        const decisionEl = document.createElement('div');
+        decisionEl.className = 'decision-item';
+        
+        // Determine impact icon and class
+        const energyImpact = decision.energyImpact;
+        const impactIcon = energyImpact > 15 ? '😰' : 
+                         energyImpact > 10 ? '😓' :
+                         energyImpact > 5 ? '😐' :
+                         energyImpact > 0 ? '😌' : '😊';
+        
+        const impactClass = energyImpact > 10 ? 'impact-negative' : 
+                          energyImpact > 5 ? '' : 'impact-positive';
+
+        decisionEl.innerHTML = `
+            <div class="decision-icon">${impactIcon}</div>
+            <div class="decision-content">
+                <div class="decision-title">Task ${index + 1}: ${decision.taskTitle}</div>
+                <div class="decision-impact ${impactClass}">
+                    Chose: ${decision.decision}<br>
+                    Energy Cost: -${decision.energyImpact} | Money: +$${decision.moneyImpact}
+                </div>
+            </div>
+        `;
+
+        // Add click handler to show detailed impact
+        decisionEl.addEventListener('click', () => {
+            showDecisionDetail(decision);
+        });
+
+        decisionsList.appendChild(decisionEl);
+    });
+
     // Show the summary screen
     showScreen('summary-screen');
 }
@@ -1728,4 +1790,50 @@ function restartGame() {
     
     // Show the character setup screen
     showScreen('character-setup');
+}
+
+// Add function to show decision detail
+function showDecisionDetail(decision) {
+    const detail = `
+        Task Type: ${decision.type}
+        Decision: ${decision.decision}
+        Energy Impact: -${decision.energyImpact}
+        Money Earned: +$${decision.moneyImpact}
+        
+        ${getDecisionTip(decision)}
+    `;
+    
+    alert(detail); // For now using alert, could be improved with a modal
+}
+
+// Add function to get decision tips
+function getDecisionTip(decision) {
+    if (decision.energyImpact > 15) {
+        return "💡 Tip: This was a high-energy decision. Consider breaking such tasks into smaller parts next time.";
+    } else if (decision.energyImpact < 5) {
+        return "💡 Tip: Great energy management! This kind of decision helps maintain your energy levels.";
+    }
+    return "💡 Tip: This was a balanced decision with moderate energy cost.";
+}
+
+// Add share score functionality
+function shareScore() {
+    const text = `🧠 I scored ${gameState.totalScore} points in Brain Tax!\n` +
+                `Completed ${completedTasks}/10 tasks\n` +
+                `Ended with ${currentEnergy}% brain energy\n` +
+                `Earned $${totalMoney}\n\n` +
+                `Can you beat my score? 🎮`;
+    
+    if (navigator.share) {
+        navigator.share({
+            title: 'My Brain Tax Score',
+            text: text,
+            url: window.location.href
+        }).catch(console.error);
+    } else {
+        // Fallback to copying to clipboard
+        navigator.clipboard.writeText(text)
+            .then(() => alert('Score copied to clipboard!'))
+            .catch(console.error);
+    }
 }
