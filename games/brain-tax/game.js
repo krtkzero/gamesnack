@@ -404,7 +404,7 @@ function showScreen(screenId) {
         }
         
         console.log(`Showing screen: ${screenId}`);
-    } else {
+        } else {
         console.error(`Screen not found: ${screenId}`);
     }
 }
@@ -1634,51 +1634,29 @@ function handleResponsiveLayout() {
     const gameContainer = document.getElementById('game-container');
     if (!gameContainer) return;
     
-    const windowWidth = window.innerWidth;
-    const windowHeight = window.innerHeight;
-    const aspectRatio = 0.75; // 3:4 ratio (width/height)
-    
-    // Apply direct styles based on orientation
-    if (windowWidth / windowHeight > aspectRatio) {
-        // Landscape mode - constrain by height
-        const containerHeight = windowHeight;
-        const containerWidth = containerHeight * aspectRatio;
-        
-        gameContainer.style.width = `${containerWidth}px`;
-        gameContainer.style.height = `${containerHeight}px`;
-    } else {
-        // Portrait mode - constrain by width
-        const containerWidth = windowWidth;
-        const containerHeight = containerWidth / aspectRatio;
-        
-        gameContainer.style.width = `${containerWidth}px`;
-        gameContainer.style.height = `${containerHeight}px`;
+    // Set viewport meta tag dynamically to prevent scaling issues
+    let metaViewport = document.querySelector('meta[name="viewport"]');
+    if (metaViewport) {
+        metaViewport.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover');
     }
+    
+    // Set game container to fill the available space without letterboxing
+    gameContainer.style.position = 'fixed';
+    gameContainer.style.width = '100%';
+    gameContainer.style.height = '100%';
+    gameContainer.style.top = '0';
+    gameContainer.style.left = '0';
+    gameContainer.style.right = '0';
+    gameContainer.style.bottom = '0';
+    gameContainer.style.margin = '0';
     
     // Force redraw on Safari/iOS
     gameContainer.style.display = 'none';
     void gameContainer.offsetHeight; // trigger reflow
     gameContainer.style.display = 'flex';
     
-    console.log(`Game container size: ${gameContainer.offsetWidth}x${gameContainer.offsetHeight}`);
-    
-    // Make sure content is visible
-    const screens = document.querySelectorAll('.screen');
-    screens.forEach(screen => {
-        if (screen.classList.contains('active')) {
-            screen.scrollTop = 0;
-        }
-    });
-}
-
-// Reset scroll position for all screens
-function resetScrollPosition() {
-    const screens = document.querySelectorAll('.screen');
-    screens.forEach(screen => {
-        if (screen.scrollTo) {
-            screen.scrollTo(0, 0);
-        }
-    });
+    // Reset scroll position for all screens
+    resetScrollPosition();
 }
 
 // Fix for iOS Safari issues with 100vh
@@ -1693,6 +1671,16 @@ function fixIOSViewportHeight() {
         document.body.style.height = `${window.innerHeight}px`;
         document.getElementById('game-container').style.height = `${window.innerHeight}px`;
     }
+}
+
+// Reset scroll position for all screens
+function resetScrollPosition() {
+    const screens = document.querySelectorAll('.screen');
+    screens.forEach(screen => {
+        if (screen.scrollTo) {
+            screen.scrollTo(0, 0);
+        }
+    });
 }
 
 // Add event listeners for viewport changes
