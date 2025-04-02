@@ -127,6 +127,16 @@ function rickrollWithComingSoon(gameName) {
     overlay.appendChild(closeButton);
     document.body.appendChild(overlay);
     
+    // Add to browser history so back button works properly
+    history.pushState({ type: 'rickroll', game: gameName }, '', '#' + gameName.toLowerCase().replace(/\s+/g, '-'));
+    
+    // Handle back button
+    window.addEventListener('popstate', function() {
+        if (document.querySelector('.rickroll-overlay')) {
+            document.body.removeChild(document.querySelector('.rickroll-overlay'));
+        }
+    });
+    
     // Play a retro sound effect
     playRetroSound();
 }
