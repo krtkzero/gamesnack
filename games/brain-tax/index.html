@@ -219,33 +219,21 @@
         <div class="summary-content">
             <div class="summary-header">
                 <h2>Day Complete! 🎉</h2>
-                <p class="final-score-text">Final Score: <span id="final-score">0</span> points</p>
+                <p class="summary-subtitle">Here's how you managed your mental energy today</p>
             </div>
             
-            <div class="summary-stats">
-                <div class="stats-row">
-                    <div class="stat-item">
-                        <span class="stat-icon">🎯</span>
-                        <h3>Tasks Completed</h3>
-                        <p><span id="completed-tasks">0</span> / 10</p>
-                        <p class="points-text">(<span id="tasks-points">0</span> points)</p>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-icon">⚡</span>
-                        <h3>Brain Energy</h3>
-                        <p><span id="final-energy">100</span>%</p>
-                        <p class="points-text">(<span id="energy-points">0</span> points)</p>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-icon">💰</span>
-                        <h3>Money Earned</h3>
-                        <p><span id="total-money">$0</span></p>
-                    </div>
+            <div class="final-score-container">
+                <div class="final-score-badge">🏆</div>
+                <h3>Your Final Score</h3>
+                <div class="final-score-display">
+                    <span id="final-score">0</span>
                 </div>
+                <p class="final-score-text">points</p>
             </div>
 
             <div class="decisions-timeline">
                 <h3>Your Decision Journey</h3>
+                <p class="journey-subtitle">See how each decision impacted your mental energy</p>
                 <div id="decisions-list" class="decisions-list">
                     <!-- Decision items will be added here dynamically -->
                 </div>

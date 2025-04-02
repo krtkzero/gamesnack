@@ -136,11 +136,7 @@ let gameState = {
     tasks: [],
     settings: {
         sound: false // Start with sound off
-    },
-    decisions: [],
-    totalScore: 0,
-    tasksPoints: 0,
-    energyPoints: 0
+    }
 };
 
 // Sound Effects
@@ -408,7 +404,7 @@ function showScreen(screenId) {
         }
         
         console.log(`Showing screen: ${screenId}`);
-        } else {
+    } else {
         console.error(`Screen not found: ${screenId}`);
     }
 }
@@ -685,18 +681,17 @@ function selectOption(optionIndex) {
     const selectedOption = currentTask.options[optionIndex];
     console.log("Selected option:", selectedOption);
     
-    // Track the decision
-    gameState.decisions.push({
-        taskTitle: currentTask.title,
-        decision: selectedOption.label,
-        energyImpact: calculateEnergyCost(selectedOption.energyCost, currentTask.type),
-        moneyImpact: selectedOption.money || 0,
-        type: currentTask.type
-    });
-    
     // Calculate and apply energy cost
     const baseCost = selectedOption.baseCost || 0;
     const energyCost = calculateEnergyCost(baseCost, currentTask.type);
+    
+    // Add selection to history
+    gameState.decisionHistory.push({
+        taskTitle: currentTask.title,
+        optionText: selectedOption.text || selectedOption.label || `Option ${optionIndex+1}`,
+        energyCost: energyCost,
+        taskType: currentTask.type
+    });
     
     // Update energy
     updateEnergy(-energyCost);
@@ -921,11 +916,7 @@ async function initGame() {
         selectedAvatar: null,
         currentTaskIndex: 0,
         tasks: [],
-        decisionHistory: [],
-        decisions: [],
-        totalScore: 0,
-        tasksPoints: 0,
-        energyPoints: 0
+        decisionHistory: []
     };
     
     // Load tasks
@@ -1345,32 +1336,89 @@ function endDay() {
     // Update UI
     const finalScoreElement = document.getElementById('final-score');
     if (finalScoreElement) {
-        finalScoreElement.innerHTML = `
-            <div class="summary-badge">🏅</div>
-            <h3><span class="score-icon">⭐</span>Final Score</h3>
-            <p>Energy Remaining: <strong>${gameState.mentalEnergy}%</strong></p>
-            <p>Decisions Made: <strong>${gameState.currentTaskIndex}/${gameState.tasks.length}</strong></p>
-            <p>Total Points: <strong>${totalScore}</strong></p>
-        `;
+        finalScoreElement.textContent = totalScore;
     }
     
-    const taxingChoiceElement = document.getElementById('taxing-choice');
-    if (taxingChoiceElement && mostTaxingTask.task) {
-        taxingChoiceElement.innerHTML = `
-            <div class="summary-badge">💭</div>
-            <h3><span class="score-icon">🧩</span>Most Taxing Decision</h3>
-            <p>"${mostTaxingTask.option}" during ${mostTaxingTask.task} cost you ${mostTaxingTask.energyCost} Mental Energy</p>
-            <p>Consider how this affected your day's outcome!</p>
-        `;
+    // Update completed tasks stats
+    const completedTasksElement = document.getElementById('completed-tasks');
+    if (completedTasksElement) {
+        completedTasksElement.textContent = gameState.currentTaskIndex;
     }
     
-    const selfCareTipElement = document.getElementById('self-care-tip');
-    if (selfCareTipElement) {
-        selfCareTipElement.innerHTML = `
-            <div class="summary-badge">💡</div>
-            <h3><span class="score-icon">🧘</span>Self Care Tip</h3>
-            <p>${selfCareTip}</p>
-        `;
+    const tasksPointsElement = document.getElementById('tasks-points');
+    if (tasksPointsElement) {
+        tasksPointsElement.textContent = decisionsScore;
+    }
+    
+    // Update energy stats
+    const finalEnergyElement = document.getElementById('final-energy');
+    if (finalEnergyElement) {
+        finalEnergyElement.textContent = gameState.mentalEnergy;
+    }
+    
+    const energyPointsElement = document.getElementById('energy-points');
+    if (energyPointsElement) {
+        energyPointsElement.textContent = energyScore;
+    }
+    
+    // Populate decision journey
+    const decisionsList = document.getElementById('decisions-list');
+    if (decisionsList) {
+        // Clear previous content
+        decisionsList.innerHTML = '';
+        
+        // Add each decision to the list
+        gameState.decisionHistory.forEach((decision, index) => {
+            const decisionItem = document.createElement('div');
+            decisionItem.className = 'decision-item';
+            decisionItem.style.setProperty('--item-index', index);
+            
+            // Add positive/negative class based on energy cost
+            if (decision.energyCost > 15) {
+                decisionItem.classList.add('negative');
+            } else if (decision.energyCost < 5) {
+                decisionItem.classList.add('positive');
+            }
+            
+            // Create icon based on task type
+            let icon = '🧠';
+            if (decision.taskType === 'social') {
+                icon = '👥';
+            } else if (decision.taskType === 'planning') {
+                icon = '📝';
+            } else if (decision.taskType === 'creative') {
+                icon = '🎨';
+            } else if (decision.taskType === 'micro') {
+                icon = '⚡';
+            }
+            
+            // Format the impact text
+            const impactClass = decision.energyCost > 10 ? 'impact-negative' : 
+                               decision.energyCost < 5 ? 'impact-positive' : '';
+            const impactIcon = decision.energyCost > 10 ? '⬇️' : 
+                              decision.energyCost < 5 ? '⬆️' : '➡️';
+            
+            decisionItem.innerHTML = `
+                <div class="decision-icon">${icon}</div>
+                <div class="decision-content">
+                    <div class="decision-title">${decision.taskTitle}</div>
+                    <div class="decision-impact">
+                        You chose: <strong>${decision.optionText}</strong>
+                        <span class="${impactClass}">
+                            <span class="impact-icon">${impactIcon}</span>
+                            ${decision.energyCost} mental energy
+                        </span>
+                    </div>
+                </div>
+            `;
+            
+            decisionsList.appendChild(decisionItem);
+        });
+        
+        // If no decisions were made
+        if (gameState.decisionHistory.length === 0) {
+            decisionsList.innerHTML = '<p class="no-decisions">No decisions were made today.</p>';
+        }
     }
     
     // Play success sound
@@ -1404,11 +1452,7 @@ function resetGame() {
         tasks: [],
         settings: {
             sound: false // Start with sound off
-        },
-        decisions: [],
-        totalScore: 0,
-        tasksPoints: 0,
-        energyPoints: 0
+        }
     };
 }
 
@@ -1590,11 +1634,7 @@ async function setupGame() {
         selectedAvatar: gameState.selectedAvatar || avatarOptions[0].id,
         currentTaskIndex: 0,
         tasks: [],
-        settings: gameState.settings || { sound: false },
-        decisions: [],
-        totalScore: 0,
-        tasksPoints: 0,
-        energyPoints: 0
+        settings: gameState.settings || { sound: false }
     };
     
     try {
@@ -1651,29 +1691,89 @@ function handleResponsiveLayout() {
     const gameContainer = document.getElementById('game-container');
     if (!gameContainer) return;
     
-    // Set viewport meta tag dynamically to prevent scaling issues
-    let metaViewport = document.querySelector('meta[name="viewport"]');
-    if (metaViewport) {
-        metaViewport.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover');
-    }
+    const windowWidth = window.innerWidth;
+    const windowHeight = window.innerHeight;
+    const aspectRatio = 0.75; // 3:4 ratio (width/height)
     
-    // Set game container to fill the available space without letterboxing
-    gameContainer.style.position = 'fixed';
-    gameContainer.style.width = '100%';
-    gameContainer.style.height = '100%';
-    gameContainer.style.top = '0';
-    gameContainer.style.left = '0';
-    gameContainer.style.right = '0';
-    gameContainer.style.bottom = '0';
-    gameContainer.style.margin = '0';
+    // Apply direct styles based on orientation
+    if (windowWidth / windowHeight > aspectRatio) {
+        // Landscape mode - constrain by height but fill available width
+        const containerHeight = windowHeight;
+        const containerWidth = Math.min(windowWidth, containerHeight * aspectRatio);
+        
+        gameContainer.style.width = `${containerWidth}px`;
+        gameContainer.style.height = `${containerHeight}px`;
+    } else {
+        // Portrait mode - use full width and adjust height accordingly
+        const containerWidth = windowWidth;
+        const containerHeight = Math.min(windowHeight, containerWidth / aspectRatio);
+        
+        gameContainer.style.width = `${containerWidth}px`;
+        gameContainer.style.height = `${containerHeight}px`;
+    }
     
     // Force redraw on Safari/iOS
     gameContainer.style.display = 'none';
     void gameContainer.offsetHeight; // trigger reflow
     gameContainer.style.display = 'flex';
     
-    // Reset scroll position for all screens
-    resetScrollPosition();
+    console.log(`Game container size: ${gameContainer.offsetWidth}x${gameContainer.offsetHeight}`);
+    
+    // Make sure content is visible
+    const screens = document.querySelectorAll('.screen');
+    screens.forEach(screen => {
+        if (screen.classList.contains('active')) {
+            screen.scrollTop = 0;
+        }
+    });
+}
+
+// Reset scroll position for all screens
+function resetScrollPosition() {
+    const screens = document.querySelectorAll('.screen');
+    screens.forEach(screen => {
+        if (screen.scrollTo) {
+            screen.scrollTo(0, 0);
+        }
+    });
+}
+
+// Restart the game when Play Again button is clicked
+function restartGame() {
+    console.log("Restarting game");
+    resetGame();
+    startGame();
+}
+
+// Share score functionality
+function shareScore() {
+    const score = document.getElementById('final-score').textContent;
+    const text = `I scored ${score} points in Brain Tax! Can you beat my score?`;
+    
+    // Check if Web Share API is available
+    if (navigator.share) {
+        navigator.share({
+            title: 'Brain Tax Score',
+            text: text,
+            url: window.location.href
+        })
+        .then(() => console.log('Successful share'))
+        .catch((error) => console.log('Error sharing:', error));
+    } else {
+        // Fallback for browsers that don't support Web Share API
+        try {
+            navigator.clipboard.writeText(text)
+                .then(() => {
+                    alert('Score copied to clipboard! Share it with your friends.');
+                })
+                .catch(err => {
+                    console.error('Could not copy text: ', err);
+                    alert('Could not copy to clipboard. Your score is: ' + score);
+                });
+        } catch (err) {
+            alert('Your score is: ' + score);
+        }
+    }
 }
 
 // Fix for iOS Safari issues with 100vh
@@ -1688,16 +1788,6 @@ function fixIOSViewportHeight() {
         document.body.style.height = `${window.innerHeight}px`;
         document.getElementById('game-container').style.height = `${window.innerHeight}px`;
     }
-}
-
-// Reset scroll position for all screens
-function resetScrollPosition() {
-    const screens = document.querySelectorAll('.screen');
-    screens.forEach(screen => {
-        if (screen.scrollTo) {
-            screen.scrollTo(0, 0);
-        }
-    });
 }
 
 // Add event listeners for viewport changes
@@ -1721,119 +1811,3 @@ document.addEventListener('DOMContentLoaded', function() {
     fixIOSViewportHeight();
     handleResponsiveLayout();
 });
-
-function showGameOver() {
-    // Calculate final scores
-    gameState.tasksPoints = completedTasks * 10; // 10 points per task
-    gameState.energyPoints = Math.floor(currentEnergy); // 1 point per energy point
-    gameState.totalScore = gameState.tasksPoints + gameState.energyPoints;
-
-    // Update summary stats
-    document.getElementById('completed-tasks').textContent = completedTasks;
-    document.getElementById('final-energy').textContent = currentEnergy;
-    document.getElementById('total-money').textContent = `$${totalMoney}`;
-    document.getElementById('tasks-points').textContent = gameState.tasksPoints;
-    document.getElementById('energy-points').textContent = gameState.energyPoints;
-    document.getElementById('final-score').textContent = gameState.totalScore;
-
-    // Generate decision timeline
-    const decisionsList = document.getElementById('decisions-list');
-    decisionsList.innerHTML = ''; // Clear existing items
-
-    gameState.decisions.forEach((decision, index) => {
-        const decisionEl = document.createElement('div');
-        decisionEl.className = 'decision-item';
-        
-        // Determine impact icon and class
-        const energyImpact = decision.energyImpact;
-        const impactIcon = energyImpact > 15 ? '😰' : 
-                         energyImpact > 10 ? '😓' :
-                         energyImpact > 5 ? '😐' :
-                         energyImpact > 0 ? '😌' : '😊';
-        
-        const impactClass = energyImpact > 10 ? 'impact-negative' : 
-                          energyImpact > 5 ? '' : 'impact-positive';
-
-        decisionEl.innerHTML = `
-            <div class="decision-icon">${impactIcon}</div>
-            <div class="decision-content">
-                <div class="decision-title">Task ${index + 1}: ${decision.taskTitle}</div>
-                <div class="decision-impact ${impactClass}">
-                    Chose: ${decision.decision}<br>
-                    Energy Cost: -${decision.energyImpact} | Money: +$${decision.moneyImpact}
-                </div>
-            </div>
-        `;
-
-        // Add click handler to show detailed impact
-        decisionEl.addEventListener('click', () => {
-            showDecisionDetail(decision);
-        });
-
-        decisionsList.appendChild(decisionEl);
-    });
-
-    // Show the summary screen
-    showScreen('summary-screen');
-}
-
-function restartGame() {
-    // Reset game state
-    currentEnergy = 100;
-    completedTasks = 0;
-    totalMoney = 0;
-    currentTaskIndex = 0;
-    
-    // Update UI
-    updateEnergyBar();
-    updateTaskProgress();
-    
-    // Show the character setup screen
-    showScreen('character-setup');
-}
-
-// Add function to show decision detail
-function showDecisionDetail(decision) {
-    const detail = `
-        Task Type: ${decision.type}
-        Decision: ${decision.decision}
-        Energy Impact: -${decision.energyImpact}
-        Money Earned: +$${decision.moneyImpact}
-        
-        ${getDecisionTip(decision)}
-    `;
-    
-    alert(detail); // For now using alert, could be improved with a modal
-}
-
-// Add function to get decision tips
-function getDecisionTip(decision) {
-    if (decision.energyImpact > 15) {
-        return "💡 Tip: This was a high-energy decision. Consider breaking such tasks into smaller parts next time.";
-    } else if (decision.energyImpact < 5) {
-        return "💡 Tip: Great energy management! This kind of decision helps maintain your energy levels.";
-    }
-    return "💡 Tip: This was a balanced decision with moderate energy cost.";
-}
-
-// Add share score functionality
-function shareScore() {
-    const text = `🧠 I scored ${gameState.totalScore} points in Brain Tax!\n` +
-                `Completed ${completedTasks}/10 tasks\n` +
-                `Ended with ${currentEnergy}% brain energy\n` +
-                `Earned $${totalMoney}\n\n` +
-                `Can you beat my score? 🎮`;
-    
-    if (navigator.share) {
-        navigator.share({
-            title: 'My Brain Tax Score',
-            text: text,
-            url: window.location.href
-        }).catch(console.error);
-    } else {
-        // Fallback to copying to clipboard
-        navigator.clipboard.writeText(text)
-            .then(() => alert('Score copied to clipboard!'))
-            .catch(console.error);
-    }
-}
