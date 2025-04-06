@@ -404,7 +404,7 @@ function showScreen(screenId) {
         }
         
         console.log(`Showing screen: ${screenId}`);
-    } else {
+        } else {
         console.error(`Screen not found: ${screenId}`);
     }
 }
@@ -1408,10 +1408,10 @@ function endDay() {
                             <span class="impact-icon">${impactIcon}</span>
                             ${decision.energyCost} mental energy
                         </span>
-                    </div>
-                </div>
-            `;
-            
+            </div>
+        </div>
+    `;
+    
             decisionsList.appendChild(decisionItem);
         });
         

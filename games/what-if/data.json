@@ -1,0 +1,114 @@
+{
+    "questions": {
+        "work": [
+            {
+                "text": "Your boss asks you to work late on Friday. Do you say yes?",
+                "yes": { "ethics": 1, "order": 2, "reality": -1 },
+                "no": { "ethics": -1, "order": -2, "reality": 1 }
+            },
+            {
+                "text": "A coworker takes credit for your idea. Do you confront them?",
+                "yes": { "ethics": 2, "order": -1, "reality": 0 },
+                "no": { "ethics": -2, "order": 1, "reality": 0 }
+            },
+            {
+                "text": "You find a major bug in production. Do you report it immediately?",
+                "yes": { "ethics": 2, "order": 2, "reality": 1 },
+                "no": { "ethics": -2, "order": -2, "reality": -1 }
+            }
+        ],
+        "food": [
+            {
+                "text": "Your friend orders pizza. Do you eat the last slice?",
+                "yes": { "ethics": -1, "order": 1, "reality": 0 },
+                "no": { "ethics": 1, "order": -1, "reality": 0 }
+            },
+            {
+                "text": "The restaurant gets your order wrong. Do you send it back?",
+                "yes": { "ethics": 0, "order": 2, "reality": 1 },
+                "no": { "ethics": 0, "order": -2, "reality": -1 }
+            },
+            {
+                "text": "You're full but there's food left. Do you force yourself to finish?",
+                "yes": { "ethics": -1, "order": 2, "reality": -1 },
+                "no": { "ethics": 1, "order": -2, "reality": 1 }
+            }
+        ],
+        "love": [
+            {
+                "text": "Your ex texts you. Do you reply?",
+                "yes": { "ethics": 0, "order": -1, "reality": -1 },
+                "no": { "ethics": 0, "order": 1, "reality": 1 }
+            },
+            {
+                "text": "You see your crush on a dating app. Do you swipe right?",
+                "yes": { "ethics": 1, "order": -1, "reality": 1 },
+                "no": { "ethics": -1, "order": 1, "reality": -1 }
+            },
+            {
+                "text": "Your friend likes someone you're interested in. Do you back off?",
+                "yes": { "ethics": 2, "order": 1, "reality": 0 },
+                "no": { "ethics": -2, "order": -1, "reality": 0 }
+            }
+        ],
+        "desi": [
+            {
+                "text": "Your mom asks about marriage. Do you change the topic?",
+                "yes": { "ethics": -1, "order": 1, "reality": 1 },
+                "no": { "ethics": 1, "order": -1, "reality": -1 }
+            },
+            {
+                "text": "Relatives compare you to others. Do you engage in the competition?",
+                "yes": { "ethics": -2, "order": 2, "reality": -1 },
+                "no": { "ethics": 2, "order": -2, "reality": 1 }
+            },
+            {
+                "text": "Family insists on traditional career. Do you follow your passion?",
+                "yes": { "ethics": 1, "order": -2, "reality": 2 },
+                "no": { "ethics": -1, "order": 2, "reality": -2 }
+            }
+        ]
+    },
+    "personalities": {
+        "ethical_realist": {
+            "title": "THE ETHICAL REALIST",
+            "tagline": "You see the world as it is, but choose to be better",
+            "thresholds": { "ethics": 8, "order": 5, "reality": 7 }
+        },
+        "chaotic_good": {
+            "title": "THE CHAOTIC GOOD",
+            "tagline": "Rules are made to be broken, especially if it's for a good cause",
+            "thresholds": { "ethics": 7, "order": -8, "reality": 6 }
+        },
+        "orderly_skeptic": {
+            "title": "THE ORDERLY SKEPTIC",
+            "tagline": "You believe in systems, but question everything",
+            "thresholds": { "ethics": 5, "order": 8, "reality": 7 }
+        },
+        "pragmatic_dreamer": {
+            "title": "THE PRAGMATIC DREAMER",
+            "tagline": "You balance idealism with practical wisdom",
+            "thresholds": { "ethics": 6, "order": 4, "reality": 8 }
+        },
+        "rebel_with_cause": {
+            "title": "THE REBEL WITH CAUSE",
+            "tagline": "You challenge norms and embrace the unconventional",
+            "thresholds": { "ethics": 7, "order": -7, "reality": 6 }
+        },
+        "balanced_mediator": {
+            "title": "THE BALANCED MEDIATOR",
+            "tagline": "You find harmony in opposing forces",
+            "thresholds": { "ethics": 5, "order": 5, "reality": 5 }
+        },
+        "idealistic_visionary": {
+            "title": "THE IDEALISTIC VISIONARY",
+            "tagline": "You see the world as it could be, not as it is",
+            "thresholds": { "ethics": 8, "order": 4, "reality": 4 }
+        },
+        "practical_realist": {
+            "title": "THE PRACTICAL REALIST",
+            "tagline": "You focus on what works in the real world",
+            "thresholds": { "ethics": 4, "order": 6, "reality": 8 }
+        }
+    }
+} 

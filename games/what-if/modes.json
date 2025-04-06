@@ -1,0 +1,26 @@
+[
+  {
+    "id": "work_life_circus",
+    "title": "Work-Life Circus",
+    "description": "Deadlines, dad jokes, and digital drama.",
+    "icon": "icon_work.png"
+  },
+  {
+    "id": "food_fomo",
+    "title": "Food & FOMO",
+    "description": "Maggi, biryani, and culinary chaos.",
+    "icon": "icon_food.png"
+  },
+  {
+    "id": "love_loneliness",
+    "title": "Love & Loneliness",
+    "description": "Crushes, ghosting, and romantic dilemmas.",
+    "icon": "icon_love.png"
+  },
+  {
+    "id": "desi_absurdism",
+    "title": "Desi Absurdism",
+    "description": "Pigeons in power and teleporting tiffins.",
+    "icon": "icon_absurd.png"
+  }
+]

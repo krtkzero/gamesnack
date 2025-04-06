@@ -18,9 +18,11 @@ function initGameCards() {
             const gameName = card.querySelector('h3').textContent.trim();
             console.log(`${gameName} clicked! Opening game...`);
             
-            // Only Brain Tax is available, rickroll for others
+            // Handle available games
             if (gameName === 'Brain Tax') {
                 window.location.href = 'games/brain-tax/index.html';
+            } else if (gameName === 'What If...') {
+                window.location.href = 'games/what-if/index.html';
             } else {
                 // Rickroll for all other games
                 rickrollWithComingSoon(gameName);
@@ -36,10 +38,10 @@ function initFeaturedGame() {
     
     if (playFeaturedBtn) {
         playFeaturedBtn.addEventListener('click', function() {
-            const gameName = featuredTitle ? featuredTitle.textContent : 'Brain Tax';
+            const gameName = featuredTitle ? featuredTitle.textContent : 'What If...';
             console.log(`Play button clicked! Loading ${gameName}...`);
             
-            window.location.href = 'games/brain-tax/index.html';
+            window.location.href = 'games/what-if/index.html';
         });
     }
 }

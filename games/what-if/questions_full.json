@@ -1,0 +1,872 @@
+{
+  "work_life_circus": [
+    {
+      "question": "What if your boss praised you daily, but only in dad jokes?",
+      "yes": {
+        "ethics": 0,
+        "order": -1,
+        "reality": 2
+      },
+      "no": {
+        "ethics": 0,
+        "order": 1,
+        "reality": -1
+      }
+    },
+    {
+      "question": "What if Mondays came with free coffee, but also mandatory karaoke?",
+      "yes": {
+        "ethics": 0,
+        "order": -2,
+        "reality": 1
+      },
+      "no": {
+        "ethics": 0,
+        "order": 1,
+        "reality": -1
+      }
+    },
+    {
+      "question": "What if your job paid double, but you had to wear formals even at home?",
+      "yes": {
+        "ethics": -1,
+        "order": 2,
+        "reality": -1
+      },
+      "no": {
+        "ethics": 1,
+        "order": -2,
+        "reality": 1
+      }
+    },
+    {
+      "question": "What if all meetings were emails, but every email required a follow-up call?",
+      "yes": {
+        "ethics": -1,
+        "order": 1,
+        "reality": 1
+      },
+      "no": {
+        "ethics": 1,
+        "order": -1,
+        "reality": -1
+      }
+    },
+    {
+      "question": "What if you got promoted, but could only use Internet Explorer at work?",
+      "yes": {
+        "ethics": -1,
+        "order": 2,
+        "reality": -1
+      },
+      "no": {
+        "ethics": 1,
+        "order": -1,
+        "reality": 2
+      }
+    },
+    {
+      "question": "What if you could skip all meetings, but had to write a poem about your work every day?",
+      "yes": {
+        "ethics": 0,
+        "order": -2,
+        "reality": 2
+      },
+      "no": {
+        "ethics": 0,
+        "order": 1,
+        "reality": -1
+      }
+    },
+    {
+      "question": "What if your office had nap pods, but they snored louder than your manager?",
+      "yes": {
+        "ethics": 1,
+        "order": -1,
+        "reality": 1
+      },
+      "no": {
+        "ethics": -1,
+        "order": 2,
+        "reality": -1
+      }
+    },
+    {
+      "question": "What if your colleague took credit for your work, but gave you biryani daily?",
+      "yes": {
+        "ethics": -2,
+        "order": 1,
+        "reality": 1
+      },
+      "no": {
+        "ethics": 2,
+        "order": -1,
+        "reality": -1
+      }
+    },
+    {
+      "question": "What if your laptop became 10x faster, but randomly insulted you once a day?",
+      "yes": {
+        "ethics": -1,
+        "order": 0,
+        "reality": 2
+      },
+      "no": {
+        "ethics": 1,
+        "order": 0,
+        "reality": -1
+      }
+    },
+    {
+      "question": "What if you got permanent WFH, but lost access to memes forever?",
+      "yes": {
+        "ethics": 0,
+        "order": 1,
+        "reality": -2
+      },
+      "no": {
+        "ethics": 0,
+        "order": -1,
+        "reality": 2
+      }
+    },
+    {
+      "question": "What if chai breaks were extended, but only with HR present?",
+      "yes": {
+        "ethics": 0,
+        "order": 2,
+        "reality": -1
+      },
+      "no": {
+        "ethics": 0,
+        "order": -2,
+        "reality": 1
+      }
+    },
+    {
+      "question": "What if you had a four-day work week, but worked 12 hours a day?",
+      "yes": {
+        "ethics": -1,
+        "order": 1,
+        "reality": -1
+      },
+      "no": {
+        "ethics": 1,
+        "order": -1,
+        "reality": 1
+      }
+    },
+    {
+      "question": "What if your team loved you, but you had to send a 'Good Morning' message daily?",
+      "yes": {
+        "ethics": 1,
+        "order": 1,
+        "reality": 1
+      },
+      "no": {
+        "ethics": -1,
+        "order": -2,
+        "reality": -1
+      }
+    },
+    {
+      "question": "What if all tasks got auto-completed, but your manager got all the credit?",
+      "yes": {
+        "ethics": -2,
+        "order": 1,
+        "reality": 1
+      },
+      "no": {
+        "ethics": 2,
+        "order": -1,
+        "reality": -1
+      }
+    },
+    {
+      "question": "What if your swipe-in machine played your childhood videos every time?",
+      "yes": {
+        "ethics": 0,
+        "order": -1,
+        "reality": 2
+      },
+      "no": {
+        "ethics": 0,
+        "order": 1,
+        "reality": -1
+      }
+    }
+  ],
+  "food_fomo": [
+    {
+      "question": "What if Swiggy delivered in 3 minutes, but only vegan food?",
+      "yes": {
+        "ethics": 1,
+        "order": -1,
+        "reality": 1
+      },
+      "no": {
+        "ethics": -1,
+        "order": 1,
+        "reality": -1
+      }
+    },
+    {
+      "question": "What if you could eat pani puri endlessly, but always alone?",
+      "yes": {
+        "ethics": 0,
+        "order": -1,
+        "reality": 2
+      },
+      "no": {
+        "ethics": 0,
+        "order": 1,
+        "reality": -1
+      }
+    },
+    {
+      "question": "What if biryani was free, but it tasted like khichdi?",
+      "yes": {
+        "ethics": 0,
+        "order": -2,
+        "reality": 2
+      },
+      "no": {
+        "ethics": 0,
+        "order": 2,
+        "reality": -1
+      }
+    },
+    {
+      "question": "What if every new cafe invited you, but you couldn't post about it?",
+      "yes": {
+        "ethics": 1,
+        "order": -1,
+        "reality": 1
+      },
+      "no": {
+        "ethics": -1,
+        "order": 1,
+        "reality": -1
+      }
+    },
+    {
+      "question": "What if Maggi was nutritious, but banned at night?",
+      "yes": {
+        "ethics": 0,
+        "order": 1,
+        "reality": 0
+      },
+      "no": {
+        "ethics": 0,
+        "order": -1,
+        "reality": 1
+      }
+    },
+    {
+      "question": "What if you had a personal chef, but they judged your every bite?",
+      "yes": {
+        "ethics": -1,
+        "order": 0,
+        "reality": 1
+      },
+      "no": {
+        "ethics": 1,
+        "order": 0,
+        "reality": -1
+      }
+    },
+    {
+      "question": "What if every friend invited you to dinner, but on the same day?",
+      "yes": {
+        "ethics": 1,
+        "order": -2,
+        "reality": 1
+      },
+      "no": {
+        "ethics": -1,
+        "order": 2,
+        "reality": -1
+      }
+    },
+    {
+      "question": "What if dessert had zero calories, but caused mild forgetfulness?",
+      "yes": {
+        "ethics": 0,
+        "order": -1,
+        "reality": 2
+      },
+      "no": {
+        "ethics": 0,
+        "order": 1,
+        "reality": -1
+      }
+    },
+    {
+      "question": "What if your fridge restocked magically, but only with pineapple pizza?",
+      "yes": {
+        "ethics": 0,
+        "order": 0,
+        "reality": 2
+      },
+      "no": {
+        "ethics": 0,
+        "order": 0,
+        "reality": -1
+      }
+    },
+    {
+      "question": "What if you could only eat outside, but your friends paid every time?",
+      "yes": {
+        "ethics": -1,
+        "order": -1,
+        "reality": 1
+      },
+      "no": {
+        "ethics": 1,
+        "order": 1,
+        "reality": -1
+      }
+    },
+    {
+      "question": "What if every dish you ordered went viral, but always misspelled your name?",
+      "yes": {
+        "ethics": 0,
+        "order": -1,
+        "reality": 1
+      },
+      "no": {
+        "ethics": 0,
+        "order": 1,
+        "reality": -1
+      }
+    },
+    {
+      "question": "What if you cooked like a MasterChef, but only remembered recipes in dreams?",
+      "yes": {
+        "ethics": 0,
+        "order": -1,
+        "reality": 2
+      },
+      "no": {
+        "ethics": 0,
+        "order": 1,
+        "reality": -1
+      }
+    },
+    {
+      "question": "What if your favorite dish changed every week, and you craved only that?",
+      "yes": {
+        "ethics": 0,
+        "order": -1,
+        "reality": 1
+      },
+      "no": {
+        "ethics": 0,
+        "order": 1,
+        "reality": -1
+      }
+    },
+    {
+      "question": "What if you became a food critic, but lost your sense of smell every Sunday?",
+      "yes": {
+        "ethics": -1,
+        "order": -1,
+        "reality": 2
+      },
+      "no": {
+        "ethics": 1,
+        "order": 1,
+        "reality": -2
+      }
+    },
+    {
+      "question": "What if you could summon food by humming, but always wrong orders?",
+      "yes": {
+        "ethics": 0,
+        "order": -2,
+        "reality": 2
+      },
+      "no": {
+        "ethics": 0,
+        "order": 2,
+        "reality": -2
+      }
+    }
+  ],
+  "love_loneliness": [
+    {
+      "question": "What if your crush liked you back, but only when you wore Crocs and cargo pants?",
+      "yes": {
+        "ethics": -1,
+        "order": -1,
+        "reality": 2
+      },
+      "no": {
+        "ethics": 1,
+        "order": 1,
+        "reality": -1
+      }
+    },
+    {
+      "question": "What if your ex wanted to get back, but you forgot why you broke up?",
+      "yes": {
+        "ethics": 0,
+        "order": -1,
+        "reality": 1
+      },
+      "no": {
+        "ethics": 0,
+        "order": 1,
+        "reality": -1
+      }
+    },
+    {
+      "question": "What if you never felt heartbreak, but also never felt butterflies?",
+      "yes": {
+        "ethics": -1,
+        "order": 1,
+        "reality": -1
+      },
+      "no": {
+        "ethics": 1,
+        "order": -1,
+        "reality": 1
+      }
+    },
+    {
+      "question": "What if you found true love, but they hated your favorite song?",
+      "yes": {
+        "ethics": 1,
+        "order": 1,
+        "reality": 0
+      },
+      "no": {
+        "ethics": -1,
+        "order": -1,
+        "reality": 0
+      }
+    },
+    {
+      "question": "What if you matched with a celebrity, but could only talk in memes?",
+      "yes": {
+        "ethics": 0,
+        "order": -1,
+        "reality": 2
+      },
+      "no": {
+        "ethics": 0,
+        "order": 1,
+        "reality": -1
+      }
+    },
+    {
+      "question": "What if your partner loved you deeply, but hated chai?",
+      "yes": {
+        "ethics": 1,
+        "order": 1,
+        "reality": -1
+      },
+      "no": {
+        "ethics": -1,
+        "order": -1,
+        "reality": 1
+      }
+    },
+    {
+      "question": "What if every date was perfect, but your relatives joined mid-way?",
+      "yes": {
+        "ethics": 1,
+        "order": -2,
+        "reality": 1
+      },
+      "no": {
+        "ethics": -1,
+        "order": 2,
+        "reality": -1
+      }
+    },
+    {
+      "question": "What if love at first sight was real, but always happened at traffic signals?",
+      "yes": {
+        "ethics": 0,
+        "order": -1,
+        "reality": 2
+      },
+      "no": {
+        "ethics": 0,
+        "order": 1,
+        "reality": -2
+      }
+    },
+    {
+      "question": "What if every confession worked, but only in rhyme?",
+      "yes": {
+        "ethics": 1,
+        "order": -1,
+        "reality": 2
+      },
+      "no": {
+        "ethics": -1,
+        "order": 1,
+        "reality": -2
+      }
+    },
+    {
+      "question": "What if you got a love letter daily, but couldn't reply to any?",
+      "yes": {
+        "ethics": -1,
+        "order": 1,
+        "reality": 1
+      },
+      "no": {
+        "ethics": 1,
+        "order": -1,
+        "reality": -1
+      }
+    },
+    {
+      "question": "What if your future partner was watching, but judging your current playlist?",
+      "yes": {
+        "ethics": 1,
+        "order": 0,
+        "reality": 1
+      },
+      "no": {
+        "ethics": -1,
+        "order": 0,
+        "reality": -1
+      }
+    },
+    {
+      "question": "What if you could skip heartbreaks, but forget the faces you kissed?",
+      "yes": {
+        "ethics": -1,
+        "order": 1,
+        "reality": 1
+      },
+      "no": {
+        "ethics": 1,
+        "order": -1,
+        "reality": -1
+      }
+    },
+    {
+      "question": "What if your partner agreed with everything, but never had opinions?",
+      "yes": {
+        "ethics": 0,
+        "order": 1,
+        "reality": -1
+      },
+      "no": {
+        "ethics": 0,
+        "order": -1,
+        "reality": 1
+      }
+    },
+    {
+      "question": "What if you had a perfect love life, but your friends never believed it?",
+      "yes": {
+        "ethics": 0,
+        "order": 1,
+        "reality": -1
+      },
+      "no": {
+        "ethics": 0,
+        "order": -1,
+        "reality": 1
+      }
+    },
+    {
+      "question": "What if you fell in love daily, but forgot it by morning?",
+      "yes": {
+        "ethics": -1,
+        "order": -2,
+        "reality": 2
+      },
+      "no": {
+        "ethics": 1,
+        "order": 2,
+        "reality": -2
+      }
+    }
+  ],
+  "desi_absurdism": [
+    {
+      "question": "What if gulab jamuns floated instead of sank, and only you noticed?",
+      "yes": {
+        "ethics": 0,
+        "order": -1,
+        "reality": 2
+      },
+      "no": {
+        "ethics": 0,
+        "order": 1,
+        "reality": -1
+      }
+    },
+    {
+      "question": "What if every time you yawned, a politician gave a speech?",
+      "yes": {
+        "ethics": 0,
+        "order": -2,
+        "reality": 2
+      },
+      "no": {
+        "ethics": 0,
+        "order": 2,
+        "reality": -2
+      }
+    },
+    {
+      "question": "What if you became the Prime Minister, but only during weekends?",
+      "yes": {
+        "ethics": -1,
+        "order": -1,
+        "reality": 2
+      },
+      "no": {
+        "ethics": 1,
+        "order": 1,
+        "reality": -1
+      }
+    },
+    {
+      "question": "What if cows started texting and ignored humans?",
+      "yes": {
+        "ethics": 0,
+        "order": -2,
+        "reality": 2
+      },
+      "no": {
+        "ethics": 0,
+        "order": 2,
+        "reality": -2
+      }
+    },
+    {
+      "question": "What if you could teleport, but only to places starting with 'K'?",
+      "yes": {
+        "ethics": 0,
+        "order": -1,
+        "reality": 2
+      },
+      "no": {
+        "ethics": 0,
+        "order": 1,
+        "reality": -1
+      }
+    },
+    {
+      "question": "What if you aged backwards, but only on Tuesdays?",
+      "yes": {
+        "ethics": 0,
+        "order": -1,
+        "reality": 2
+      },
+      "no": {
+        "ethics": 0,
+        "order": 1,
+        "reality": -1
+      }
+    },
+    {
+      "question": "What if lassi was illegal, but every soft drink was lassi-flavored?",
+      "yes": {
+        "ethics": 0,
+        "order": -1,
+        "reality": 2
+      },
+      "no": {
+        "ethics": 0,
+        "order": 1,
+        "reality": -2
+      }
+    },
+    {
+      "question": "What if you could time-travel, but only to your neighbor's past arguments?",
+      "yes": {
+        "ethics": -1,
+        "order": -1,
+        "reality": 2
+      },
+      "no": {
+        "ethics": 1,
+        "order": 1,
+        "reality": -2
+      }
+    },
+    {
+      "question": "What if every light switch you touched played a remix of your voice?",
+      "yes": {
+        "ethics": 0,
+        "order": -1,
+        "reality": 2
+      },
+      "no": {
+        "ethics": 0,
+        "order": 1,
+        "reality": -1
+      }
+    },
+    {
+      "question": "What if roads started singing, but only Bhojpuri love songs?",
+      "yes": {
+        "ethics": 0,
+        "order": -1,
+        "reality": 2
+      },
+      "no": {
+        "ethics": 0,
+        "order": 1,
+        "reality": -1
+      }
+    },
+    {
+      "question": "What if every ATM dispensed samosas instead of cash?",
+      "yes": {
+        "ethics": 0,
+        "order": -2,
+        "reality": 3
+      },
+      "no": {
+        "ethics": 0,
+        "order": 2,
+        "reality": -2
+      }
+    },
+    {
+      "question": "What if you became invisible, but only in WhatsApp groups?",
+      "yes": {
+        "ethics": 0,
+        "order": -2,
+        "reality": 2
+      },
+      "no": {
+        "ethics": 0,
+        "order": 2,
+        "reality": -2
+      }
+    },
+    {
+      "question": "What if your nose sneezed confetti, but only in job interviews?",
+      "yes": {
+        "ethics": 0,
+        "order": -2,
+        "reality": 2
+      },
+      "no": {
+        "ethics": 0,
+        "order": 2,
+        "reality": -1
+      }
+    },
+    {
+      "question": "What if your shadow had a life of its own and joined another family?",
+      "yes": {
+        "ethics": 0,
+        "order": -2,
+        "reality": 3
+      },
+      "no": {
+        "ethics": 0,
+        "order": 2,
+        "reality": -2
+      }
+    },
+    {
+      "question": "What if pigeons ruled the city, and made humans apply for flying licenses?",
+      "yes": {
+        "ethics": 0,
+        "order": -3,
+        "reality": 3
+      },
+      "no": {
+        "ethics": 0,
+        "order": 3,
+        "reality": -3
+      }
+    }
+  ],
+  "personalities": {
+    "the_startup_bro": {
+      "title": "The Startup Bro",
+      "tagline": "You hustle hard and break things, but with style",
+      "image": "thestartupbro",
+      "thresholds": {
+        "ethics": -3,
+        "order": -3,
+        "reality": 5
+      }
+    },
+    "the_peaceful_fool": {
+      "title": "The Peaceful Fool",
+      "tagline": "You choose peace over drama, even if it costs you",
+      "image": "thepeacefulfool",
+      "thresholds": {
+        "ethics": 5,
+        "order": 0,
+        "reality": -3
+      }
+    },
+    "the_manager_of_mayhem": {
+      "title": "The Manager of Mayhem",
+      "tagline": "You create order in chaos, or is it chaos in order?",
+      "image": "themanagerofmayhem",
+      "thresholds": {
+        "ethics": 0,
+        "order": 5,
+        "reality": -3
+      }
+    },
+    "the_reluctant_villain": {
+      "title": "The Reluctant Villain",
+      "tagline": "You do what needs to be done, with a heavy heart",
+      "image": "thereluctantvillain",
+      "thresholds": {
+        "ethics": -5,
+        "order": 3,
+        "reality": 3
+      }
+    },
+    "the_empathetic_rebel": {
+      "title": "The Empathetic Rebel",
+      "tagline": "You fight the system, but with a kind heart",
+      "image": "theempatheticrebel",
+      "thresholds": {
+        "ethics": 5,
+        "order": -5,
+        "reality": 3
+      }
+    },
+    "the_sensitive_absurdist": {
+      "title": "The Sensitive Absurdist",
+      "tagline": "You embrace the chaos while protecting others",
+      "image": "thesensitiveabsurdist",
+      "thresholds": {
+        "ethics": 3,
+        "order": -3,
+        "reality": 5
+      }
+    },
+    "the_softspoken_saviour": {
+      "title": "The Softspoken Saviour",
+      "tagline": "You quietly make the world a better place",
+      "image": "thesoftspokensaviour",
+      "thresholds": {
+        "ethics": 5,
+        "order": 3,
+        "reality": -3
+      }
+    },
+    "the_shrug_emoji": {
+      "title": "The Shrug Emoji",
+      "tagline": "You go with the flow, for better or worse",
+      "image": "theshrugemoji",
+      "thresholds": {
+        "ethics": 0,
+        "order": 0,
+        "reality": 0
+      }
+    }
+  }
+}

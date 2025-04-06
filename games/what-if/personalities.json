@@ -1,0 +1,90 @@
+[
+  {
+    "id": "themanagerofmayhem",
+    "title": "The Manager of Mayhem",
+    "alignment": {
+      "ethics": "selfish",
+      "order": "chaotic",
+      "reality": "absurdist"
+    },
+    "sprite": "themanagerofmayhem.png",
+    "description": "You thrive in chaos and profit from it."
+  },
+  {
+    "id": "thesoftspokensaviour",
+    "title": "The Soft-Spoken Saviour",
+    "alignment": {
+      "ethics": "altruistic",
+      "order": "lawful",
+      "reality": "realist"
+    },
+    "sprite": "thesoftspokensaviour.png",
+    "description": "Empathy is your language. Order is your comfort."
+  },
+  {
+    "id": "thestartupbro",
+    "title": "The Startup Bro",
+    "alignment": {
+      "ethics": "selfish",
+      "order": "lawful",
+      "reality": "realist"
+    },
+    "sprite": "thestartupbro.png",
+    "description": "Structure is your superpower. Hustle, your religion."
+  },
+  {
+    "id": "thesensitiveabsurdist",
+    "title": "The Sensitive Absurdist",
+    "alignment": {
+      "ethics": "altruistic",
+      "order": "chaotic",
+      "reality": "absurdist"
+    },
+    "sprite": "thesensitiveabsurdist.png",
+    "description": "You cry at memes and rescue pigeons mid-call."
+  },
+  {
+    "id": "theempatheticrebel",
+    "title": "The Empathetic Rebel",
+    "alignment": {
+      "ethics": "altruistic",
+      "order": "chaotic",
+      "reality": "realist"
+    },
+    "sprite": "theempatheticrebel.png",
+    "description": "You help others while breaking all the rules."
+  },
+  {
+    "id": "thereluctantvillain",
+    "title": "The Reluctant Villain",
+    "alignment": {
+      "ethics": "selfish",
+      "order": "chaotic",
+      "reality": "realist"
+    },
+    "sprite": "thereluctantvillain.png",
+    "description": "You break systems with a smirk\u2014and a spreadsheet."
+  },
+  {
+    "id": "thepeacefulfool",
+    "title": "The Peaceful Fool",
+    "alignment": {
+      "ethics": "altruistic",
+      "order": "lawful",
+      "reality": "absurdist"
+    },
+    "sprite": "thepeacefulfool.png",
+    "description": "You believe in rules, even when they're surreal."
+  },
+  {
+    "id": "theshrugemoji",
+    "title": "The Shrug Emoji",
+    "alignment": {
+      "ethics": "neutral",
+      "order": "neutral",
+      "reality": "neutral"
+    },
+    "sprite": "theshrugemoji.png",
+    "description": "You're here, you're chill, and maybe mildly confused."
+  }
+]

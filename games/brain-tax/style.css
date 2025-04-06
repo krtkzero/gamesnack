@@ -1783,7 +1783,7 @@ h1, h2, h3, h4, h5, h6 {
     }
 
     .journey-subtitle {
-        font-size: 0.9rem;
+    font-size: 0.9rem;
     }
 
     .decision-item {
@@ -1801,7 +1801,7 @@ h1, h2, h3, h4, h5, h6 {
     .summary-actions {
         flex-direction: column;
         gap: 15px;
-        width: 100%;
+    width: 100%;
     }
 
     .play-again-btn, .share-score-btn {

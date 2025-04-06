@@ -1,0 +1,336 @@
+/* Base styles */
+:root {
+    --primary: #6C63FF;
+    --accent: #FFB800;
+    --background: #F8F9FA;
+    --text: #2D3436;
+    --card-bg: #FFFFFF;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    background: 
+        linear-gradient(120deg, rgba(108, 99, 255, 0.1), rgba(255, 184, 0, 0.1)),
+        linear-gradient(240deg, rgba(255, 67, 54, 0.1), rgba(76, 175, 80, 0.1)),
+        var(--background);
+    color: var(--text);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.game-container {
+    width: 100%;
+    max-width: 800px;
+    position: relative;
+}
+
+.screen {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    background: var(--card-bg);
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: var(--shadow);
+}
+
+.screen.active {
+    display: block;
+    opacity: 1;
+    animation: fadeInUp 0.5s ease-out;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+@keyframes slideIn {
+    from { transform: translateX(-20px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+/* Intro Screen */
+.intro-content {
+    text-align: center;
+}
+
+.intro-content h1 {
+    font-weight: 700;
+    font-size: 4rem;
+    margin-bottom: 20px;
+    color: var(--primary);
+    text-transform: uppercase;
+    animation: pulse 2s infinite;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.intro-content p {
+    font-weight: 800;
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+    color: var(--text);
+}
+
+/* Mode Select Screen */
+.mode-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.mode-card {
+    background: var(--card-bg);
+    border-radius: 15px;
+    padding: 30px;
+    text-align: center;
+    cursor: pointer;
+    transition: var(--transition);
+    border: 2px solid transparent;
+}
+
+.mode-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary);
+}
+
+.mode-icon {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 20px;
+    object-fit: contain;
+}
+
+.mode-card h3 {
+    font-weight: 800;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: var(--primary);
+}
+
+.mode-card p {
+    font-weight: 700;
+    color: var(--text);
+    opacity: 0.9;
+}
+
+/* Question Screen */
+.progress-bar {
+    background: #E9ECEF;
+    height: 10px;
+    border-radius: 5px;
+    margin-bottom: 30px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    background: var(--primary);
+    height: 100%;
+    width: 0;
+    transition: width 0.3s ease;
+}
+
+.question-content {
+    text-align: center;
+}
+
+.question-text {
+    font-weight: 800;
+    font-size: 1.8rem;
+    margin-bottom: 40px;
+    color: var(--text);
+}
+
+.button-group {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+/* Result Screen */
+.result-content {
+    text-align: center;
+}
+
+.personality-image {
+    width: 180px;
+    height: 240px;
+    border-radius: 20px;
+    margin-bottom: 30px;
+    object-fit: cover;
+    border: 5px solid var(--primary);
+    box-shadow: var(--shadow);
+}
+
+.personality-title {
+    font-weight: 800;
+    font-size: 2.5rem;
+    color: var(--primary);
+    margin-bottom: 10px;
+}
+
+.personality-tagline {
+    font-weight: 800;
+    font-size: 1.2rem;
+    color: var(--text);
+    margin-bottom: 40px;
+}
+
+.alignment-bars {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.alignment-bar {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.alignment-bar span {
+    width: 100px;
+    text-align: right;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    animation: slideIn 0.3s ease-out;
+}
+
+.bar-container {
+    flex: 1;
+    background: #E9ECEF;
+    height: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.bar-fill {
+    height: 100%;
+    background: var(--primary);
+    transition: width 0.5s ease;
+}
+
+/* Buttons */
+.btn {
+    background: var(--primary);
+    color: white;
+    padding: 15px 30px;
+    border-radius: 10px;
+    border: none;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: var(--transition);
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+}
+
+.yes-btn {
+    background: #4CAF50;
+}
+
+.no-btn {
+    background: #F44336;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .screen {
+        padding: 20px;
+    }
+
+    .intro-content h1 {
+        font-size: 3rem;
+    }
+
+    .mode-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .question-text {
+        font-size: 1.5rem;
+    }
+
+    .button-group {
+        flex-direction: column;
+    }
+
+    .personality-image {
+        width: 150px;
+        height: 200px;
+    }
+
+    .personality-title {
+        font-size: 2rem;
+    }
+}
+
+/* Sound Toggle */
+.sound-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    background: var(--card-bg);
+    border: 2px solid var(--primary);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: var(--shadow);
+}
+
+.sound-toggle:hover {
+    transform: scale(1.1);
+}
+
+.sound-toggle.muted {
+    background: #f8f9fa;
+    border-color: var(--secondary);
+}
+
+.sound-toggle svg {
+    width: 24px;
+    height: 24px;
+    fill: var(--primary);
+    transition: var(--transition);
+} 
